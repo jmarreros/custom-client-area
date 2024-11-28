@@ -1,0 +1,171 @@
+.customarea-form .button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #72849c;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.customarea-form .button:hover {
+    background-color: #35baf2;
+}
+
+.customarea-form .form-controls label span {
+    color: red;
+}
+
+.customarea-form .form-controls .input{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.customarea-form fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.customarea-form fieldset {
+    background-color: #efefef;
+}
+
+.customarea-form fieldset legend{
+    border: 1px solid #ccc;
+    background-color: #efefef;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 12px;
+}
+
+.customarea-form .form-message {
+    background-color: #ceeed8;
+    color: #005a1e;
+    border: 1px solid #005a1e;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.customarea-form .form-message.error {
+    background-color: #fed5da;
+    color: #831c2c;
+    border-color: #831c2c;
+}
+
+.customarea-form .form-footer {
+    margin-top: 20px;
+}
+
+.customarea-form .row-controls{
+    display: flex;
+    gap: 20px;
+    flex-wrap:wrap;
+}
+
+.customarea-form .row-controls > p{
+    flex: 1;
+    min-width:120px;
+}
+
+.customarea-form .row-controls.one-column{
+    flex-wrap: wrap;
+    gap:0;
+}
+
+.customarea-form .row-controls.one-column p > *{
+    width: 100%;
+    display: block;
+}
+
+.customarea-form .row-controls.one-column > p{
+    width: 100%;
+    flex: 100%;
+}
+
+.customarea-form fieldset textarea{
+    resize: none;
+}
+
+.customarea-form.public .form-controls label{
+    color:black;
+}
+
+.customarea-form.public .form-controls .input{
+    background-color: #ffd8cd;
+    color:black;
+    border:1px solid black;
+}
+
+.customarea-form.public fieldset{
+    background-color: #f5f5f5;
+}
+
+.customarea-form.public fieldset legend{
+    background-color:coral;
+    color:white;
+}
+
+.custom_checkout_fields h5{
+    margin-bottom: 12px;
+}
+
+.custom_checkout_fields h5 + p{
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .customarea-form .row-controls {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/*Spinner*/
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 12px;
+    height: 12px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: 3px;
+    border: 3px solid gray;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: gray transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "jmarreros/customarea",
+  "description": "Custom client area",
+  "autoload": {
+    "psr-4": {
+      "dcms\\customarea\\": "./"
+    },
+    "files": [
+      "helpers/general.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Jhon Marreros Guzmán",
+      "email": "admin@decodecms.com"
+    }
+  ],
+  "require": {
+    "dompdf/dompdf": "^3.0"
+  }
+}
