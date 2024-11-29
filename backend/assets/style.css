@@ -1,0 +1,12 @@
+.dcms-shortcode{
+    background-color: #0073AA;
+    border-radius:4px;
+    Padding:10px 20px;
+    color:white;
+}
+
+#pre-login{
+    width: 50%;
+    height: 100vh;
+    min-height: 100vh;
+}

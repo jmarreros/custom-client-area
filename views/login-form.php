@@ -25,7 +25,7 @@
 
             <div class="form-link">
                 <span><?= __('No tienes cuenta?', 'customarea') ?></span>
-	            <a class="link" href="<?= $url_register ?>"  ><?= __('Regístrate', 'customarea') ?></a>
+	            <a class="link" href="<?= $url_register ?>"  ><?= __('Solicítala', 'customarea') ?></a>
             </div>
         </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace dcms\customarea\includes;
+namespace dcms\customarea\backend\includes;
 
 class Plugin {
 
@@ -11,7 +11,8 @@ class Plugin {
 
 	// Activate plugin - create options and database table
 	public function dcms_activation_plugin(): void {
-		wp_mkdir_p( DCMS_CUSTOMAREA_UPLOAD_DIR );
+		$db = new Database();
+		$db->create_table_pre_register();
 	}
 
 	// Deactivate plugin

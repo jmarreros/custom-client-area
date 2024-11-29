@@ -16,11 +16,13 @@ namespace dcms\customarea;
 
 require __DIR__ . '/vendor/autoload.php';
 
-use dcms\customarea\includes\Plugin;
-use dcms\customarea\includes\Submenu;
+use dcms\customarea\backend\includes\Plugin;
+use dcms\customarea\backend\includes\Submenu;
+use dcms\customarea\backend\includes\Enqueue as EnqueueBackend;
+use dcms\customarea\backend\includes\PreRegister;
 use dcms\customarea\includes\Shortcode;
 use dcms\customarea\includes\User;
-use dcms\customarea\includes\Enqueue;
+
 use dcms\customarea\includes\Settings;
 use dcms\customarea\includes\Redirect;
 
@@ -80,7 +82,8 @@ final class Loader {
 		new Plugin();
 		new SubMenu();
 		new Shortcode();
-		new Enqueue();
+		new EnqueueBackend();
+		new PreRegister();
 		new User();
 		new Settings();
 		new Redirect();

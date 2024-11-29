@@ -9,8 +9,8 @@ class Shortcode {
 	}
 
 	public function create_shortcodes(): void {
-		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGIN, [ $this, 'create_login_form' ] );
-		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGOUT, [ $this, 'create_logout' ] );
+		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGIN, [ $this, 'create_login_form' ] );
+		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGOUT, [ $this, 'create_logout' ] );
 		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_REGISTER, [ $this, 'create_register_form' ] );
 
 		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA, [ $this, 'create_client_data_emergency_form' ] );

@@ -5,8 +5,8 @@ namespace dcms\customarea\includes;
 class Redirect {
 
 	public function __construct() {
-		add_action( 'template_redirect', [ $this, 'redirect_client_area' ] );
-		add_action( 'template_redirect', [ $this, 'redirect_show_design_pdf' ] );
+//		add_action( 'template_redirect', [ $this, 'redirect_client_area' ] );
+//		add_action( 'template_redirect', [ $this, 'redirect_show_design_pdf' ] );
 	}
 
 	// Redirect client area from my account page WooCommerce

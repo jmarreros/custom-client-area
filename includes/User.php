@@ -15,10 +15,10 @@ class User {
 		add_action( 'wp_ajax_dcms_save_data_connection', [ $this, 'custom_save_data_connection' ] );
 		add_action( 'wp_ajax_dcms_save_data_emergency', [ $this, 'custom_save_data_emergency' ] );
 
-		add_action( 'show_user_profile', [ $this, 'add_fields_profile' ] );
-		add_action( 'edit_user_profile', [ $this, 'add_fields_profile' ] );
-		add_action( 'personal_options_update', [ $this, 'save_fields_profile' ] );
-		add_action( 'edit_user_profile_update', [ $this, 'save_fields_profile' ] );
+//		add_action( 'show_user_profile', [ $this, 'add_fields_profile' ] );
+//		add_action( 'edit_user_profile', [ $this, 'add_fields_profile' ] );
+//		add_action( 'personal_options_update', [ $this, 'save_fields_profile' ] );
+//		add_action( 'edit_user_profile_update', [ $this, 'save_fields_profile' ] );
 	}
 
 	public function custom_register_user_ajax(): void {

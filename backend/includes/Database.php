@@ -1,0 +1,45 @@
+<?php
+
+namespace dcms\customarea\backend\includes;
+
+use wpdb;
+
+/**
+ * Class for creating a dashboard submenu
+ */
+class Database {
+	private wpdb $wpdb;
+	private string $table_pre_register;
+
+	public function __construct() {
+		global $wpdb;
+		$this->wpdb               = $wpdb;
+		$this->table_pre_register = $wpdb->prefix . 'customarea_pre_register';
+	}
+
+	public function create_table_pre_register(): void {
+		$sql = "CREATE TABLE IF NOT EXISTS $this->table_pre_register (
+			id INT(11) NOT NULL AUTO_INCREMENT,
+			email VARCHAR(250) NOT NULL UNIQUE,
+			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+			user_id bigint(20) unsigned NULL,
+			PRIMARY KEY (id)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+	}
+
+	public function save_table_pre_register( array $emails ): void {
+		$this->wpdb->query( "TRUNCATE TABLE $this->table_pre_register" );
+		foreach ( $emails as $email ) {
+			$email = sanitize_email( $email );
+			$this->wpdb->insert( $this->table_pre_register, [ 'email' => $email ] );
+		}
+	}
+
+	public function get_emails_pre_register(): array {
+		return $this->wpdb->get_col( "SELECT email FROM $this->table_pre_register" );
+	}
+
+}
