@@ -1,6 +1,6 @@
 <?php
 
-namespace dcms\customarea\includes;
+namespace dcms\customarea\frontend\includes;
 
 class Enqueue {
 	public function __construct() {
@@ -9,8 +9,8 @@ class Enqueue {
 
 	// Register scripts frontend
 	public function register_scripts(): void {
-		wp_register_style( 'customarea-style', DCMS_CUSTOMAREA_URL . 'assets/style.css', [], DCMS_CUSTOMAREA_VERSION );
-		wp_register_script( 'customarea-script', DCMS_CUSTOMAREA_URL . 'assets/script.js', [ 'jquery' ], DCMS_CUSTOMAREA_VERSION, true );
+		wp_register_style( 'customarea-style', DCMS_CUSTOMAREA_URL . 'frontend/assets/style.css', [], DCMS_CUSTOMAREA_VERSION );
+		wp_register_script( 'customarea-script', DCMS_CUSTOMAREA_URL . 'frontend/assets/script.js', [ 'jquery' ], DCMS_CUSTOMAREA_VERSION, true );
 
 		wp_localize_script( 'customarea-script',
 			'customarea_vars',

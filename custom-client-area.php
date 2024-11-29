@@ -20,8 +20,11 @@ use dcms\customarea\backend\includes\Plugin;
 use dcms\customarea\backend\includes\Submenu;
 use dcms\customarea\backend\includes\Enqueue as EnqueueBackend;
 use dcms\customarea\backend\includes\PreRegister;
-use dcms\customarea\includes\Shortcode;
-use dcms\customarea\includes\User;
+
+use dcms\customarea\frontend\includes\Shortcode;
+use dcms\customarea\frontend\includes\Enqueue as EnqueueFrontend;
+
+use dcms\customarea\backend\includes\User;
 
 use dcms\customarea\includes\Settings;
 use dcms\customarea\includes\Redirect;
@@ -48,13 +51,13 @@ final class Loader {
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_LOGOUT', 'customarea_logout' );
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_REGISTER', 'customarea_register' );
 
-		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA', 'customarea_client_data_emergency' );
-		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_CONNECTION_DATA', 'customarea_client_data_connection' );
-		define( 'DCMS_CUSTOMAREA_SHORTCODE_QR_CODE', 'customarea_code' );
+//		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA', 'customarea_client_data_emergency' );
+//		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_CONNECTION_DATA', 'customarea_client_data_connection' );
+//		define( 'DCMS_CUSTOMAREA_SHORTCODE_QR_CODE', 'customarea_code' );
 
-		define( 'DCMS_CUSTOMAREA_SHORTCODE_PUBLIC_DATA', 'customarea_public_data' );
-		define( 'DCMS_CUSTOMAREA_UPLOAD_DIR', wp_upload_dir()['basedir'] . '/users-qr-code/' );
-		define( 'DCMS_CUSTOMAREA_UPLOAD_URL', wp_upload_dir()['baseurl'] . '/users-qr-code/' );
+//		define( 'DCMS_CUSTOMAREA_SHORTCODE_PUBLIC_DATA', 'customarea_public_data' );
+//		define( 'DCMS_CUSTOMAREA_UPLOAD_DIR', wp_upload_dir()['basedir'] . '/users-qr-code/' );
+//		define( 'DCMS_CUSTOMAREA_UPLOAD_URL', wp_upload_dir()['baseurl'] . '/users-qr-code/' );
 	}
 
 	// Load tex domain
@@ -81,8 +84,9 @@ final class Loader {
 		$this->add_link_plugin();
 		new Plugin();
 		new SubMenu();
-		new Shortcode();
 		new EnqueueBackend();
+		new Shortcode();
+		new EnqueueFrontend();
 		new PreRegister();
 		new User();
 		new Settings();

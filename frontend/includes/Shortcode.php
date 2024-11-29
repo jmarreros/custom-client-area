@@ -1,6 +1,6 @@
 <?php
 
-namespace dcms\customarea\includes;
+namespace dcms\customarea\frontend\includes;
 
 class Shortcode {
 
@@ -9,9 +9,11 @@ class Shortcode {
 	}
 
 	public function create_shortcodes(): void {
-		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGIN, [ $this, 'create_login_form' ] );
-		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGOUT, [ $this, 'create_logout' ] );
-		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_REGISTER, [ $this, 'create_register_form' ] );
+		add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_REGISTER, [ $this, 'create_register_form' ] );
+
+
+//		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGIN, [ $this, 'create_login_form' ] );
+//		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGOUT, [ $this, 'create_logout' ] );
 
 		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA, [ $this, 'create_client_data_emergency_form' ] );
 		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_CLIENT_CONNECTION_DATA, [
@@ -22,6 +24,24 @@ class Shortcode {
 
 		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_PUBLIC_DATA, [ $this, 'create_public_data_form' ] );
 	}
+
+	public function create_register_form(): string {
+		// Validate user is not logged in
+		if ( is_user_logged_in() ) {
+			return __( 'Ya estás logueado', 'customarea' );
+		}
+
+		wp_enqueue_script( 'customarea-script' );
+		wp_enqueue_style( 'customarea-style' );
+
+		$url_login = dcms_get_url_login();
+
+		ob_start();
+		include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/register-form.php' );
+
+		return ob_get_clean();
+	}
+
 
 	public function create_login_form(): string {
 		wp_enqueue_script( 'customarea-script' );
@@ -51,22 +71,6 @@ class Shortcode {
 		}
 	}
 
-	public function create_register_form(): string {
-		// Validate user is not logged in
-		if ( is_user_logged_in() ) {
-			return __( 'Ya estás logueado', 'customarea' );
-		}
-
-		wp_enqueue_script( 'customarea-script' );
-		wp_enqueue_style( 'customarea-style' );
-
-		$url_login = dcms_get_url_login();
-
-		ob_start();
-		include_once( DCMS_CUSTOMAREA_PATH . '/views/register-form.php' );
-
-		return ob_get_clean();
-	}
 
 	public function create_client_data_emergency_form(): string {
 		wp_enqueue_script( 'customarea-script' );

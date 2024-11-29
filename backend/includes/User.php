@@ -1,6 +1,6 @@
 <?php
 
-namespace dcms\customarea\includes;
+namespace dcms\customarea\backend\includes;
 
 use JetBrains\PhpStorm\NoReturn;
 
@@ -12,8 +12,8 @@ class User {
 		add_action( 'wp_ajax_nopriv_dcms_login_user', [ $this, 'custom_login_user_ajax' ] );
 		// add_filter( 'after_password_reset', [ $this, 'custom_redirect' ] );
 
-		add_action( 'wp_ajax_dcms_save_data_connection', [ $this, 'custom_save_data_connection' ] );
-		add_action( 'wp_ajax_dcms_save_data_emergency', [ $this, 'custom_save_data_emergency' ] );
+//		add_action( 'wp_ajax_dcms_save_data_connection', [ $this, 'custom_save_data_connection' ] );
+//		add_action( 'wp_ajax_dcms_save_data_emergency', [ $this, 'custom_save_data_emergency' ] );
 
 //		add_action( 'show_user_profile', [ $this, 'add_fields_profile' ] );
 //		add_action( 'edit_user_profile', [ $this, 'add_fields_profile' ] );

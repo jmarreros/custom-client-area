@@ -17,7 +17,9 @@
 
 
     <p>
-        <small>Ingresa la lista de correos uno por línea</small>
+        <small>- Ingresa la lista de correos uno por línea</small>
+        <br>
+        <small>- Los correos usados para registro se quitarán de la lista automáticamente</small>
     </p>
 
     <form method="post" action="<?php echo admin_url( 'admin-post.php' ) ?>">
