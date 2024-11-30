@@ -124,6 +124,16 @@
     }
 }
 
+
+.customarea-register .form-controls{
+    margin: 25px auto;
+}
+
+.customarea-register .form-footer .form-link{
+    margin-top:20px;
+}
+
+
 /*Spinner*/
 .lds-ring {
     display: inline-block;

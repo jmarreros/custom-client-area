@@ -2,6 +2,8 @@
 
 namespace dcms\customarea\backend\includes;
 
+use JetBrains\PhpStorm\NoReturn;
+
 class PreRegister {
 
 	public function __construct() {
@@ -9,7 +11,7 @@ class PreRegister {
 		add_action( 'admin_post_process_pre_register_form', [ $this, 'process_pre_register_form' ] );
 	}
 
-	public function process_pre_register_form(){
+	#[NoReturn] public function process_pre_register_form():void{
 		// Check nonce
 		if( !isset( $_POST['pre_register_nonce'] ) || !wp_verify_nonce( $_POST['pre_register_nonce'], 'pre_register_action' ) ){
 			wp_die( 'Error de seguridad' );

@@ -20,13 +20,13 @@ use dcms\customarea\backend\includes\Plugin;
 use dcms\customarea\backend\includes\Submenu;
 use dcms\customarea\backend\includes\Enqueue as EnqueueBackend;
 use dcms\customarea\backend\includes\PreRegister;
+use dcms\customarea\backend\includes\Settings;
 
 use dcms\customarea\frontend\includes\Shortcode;
 use dcms\customarea\frontend\includes\Enqueue as EnqueueFrontend;
 
-use dcms\customarea\backend\includes\User;
+use dcms\customarea\frontend\includes\User as UserFrontend;
 
-use dcms\customarea\includes\Settings;
 use dcms\customarea\includes\Redirect;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -88,7 +88,7 @@ final class Loader {
 		new Shortcode();
 		new EnqueueFrontend();
 		new PreRegister();
-		new User();
+		new UserFrontend();
 		new Settings();
 		new Redirect();
 	}

@@ -6,7 +6,6 @@
         e.preventDefault();
 
         const data = {
-            username: $(this).find('#username').val(),
             email: $(this).find('#email').val(),
         }
 
