@@ -8,7 +8,7 @@
     <form id="customarea-login" class="customarea-form" action="" method="post">
 
         <div class="form-controls">
-            <label for="username"><?= __('Usuario', 'customarea') ?> <span>*</span></label>
+            <label for="username"><?= __('Correo', 'customarea') ?> <span>*</span></label>
             <input id="username" type="text" name="username" maxlength="120" required>
 
             <label for="password"><?= __('Clave', 'customarea') ?> <span>*</span></label>

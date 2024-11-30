@@ -10,10 +10,8 @@ class Shortcode {
 
 	public function create_shortcodes(): void {
 		add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_REGISTER, [ $this, 'create_register_form' ] );
-
-
-//		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGIN, [ $this, 'create_login_form' ] );
-//		 add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGOUT, [ $this, 'create_logout' ] );
+		add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGIN, [ $this, 'create_login_form' ] );
+		add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_LOGOUT, [ $this, 'create_logout' ] );
 
 		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA, [ $this, 'create_client_data_emergency_form' ] );
 		// add_shortcode( DCMS_CUSTOMAREA_SHORTCODE_CLIENT_CONNECTION_DATA, [
@@ -49,7 +47,7 @@ class Shortcode {
 
 		if ( is_user_logged_in() ) {
 			ob_start();
-			include_once( DCMS_CUSTOMAREA_PATH . '/views/logout-form.php' );
+			include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/logout-form.php' );
 
 			return ob_get_clean();
 		}
@@ -57,12 +55,12 @@ class Shortcode {
 		$url_register = dcms_get_url_register();
 
 		ob_start();
-		include_once( DCMS_CUSTOMAREA_PATH . '/views/login-form.php' );
+		include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/login-form.php' );
 
 		return ob_get_clean();
 	}
 
-	public function create_logout(){
+	public function create_logout() {
 		if ( is_user_logged_in() ) {
 			ob_start();
 			include_once( DCMS_CUSTOMAREA_PATH . '/views/logout-form.php' );
@@ -122,7 +120,7 @@ class Shortcode {
 		wp_enqueue_style( 'customarea-style' );
 
 		$username = get_query_var( 'customarea_username' );
-		$user     = get_user_by( 'login', urldecode( $username ), );
+		$user     = get_user_by( 'login', urldecode( $username ) );
 
 		if ( $user === false ) {
 			return __( 'Usuario no encontrado', 'customarea' );
@@ -145,6 +143,7 @@ class Shortcode {
 
 			if ( $not_bought_page ) {
 				$page = get_page_by_path( $not_bought_page );
+
 				return $page->post_content;
 			} else {
 				return __( 'Tienes que comprar un producto para acceder a esta sección', 'customarea' );

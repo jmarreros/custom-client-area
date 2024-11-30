@@ -21,7 +21,8 @@ class User {
 
 		dcms_validate_nonce( $_POST['nonce'], 'ajax-nonce' );
 
-		$user_login = sanitize_email( $_POST['email'] ?? '' );
+		$user_login = sanitize_user( $_POST['username'] ?? '' );
+		$user_email = sanitize_email( $_POST['email'] ?? '' );
 
 		if ( is_user_logged_in() ) {
 			$res = [
@@ -33,7 +34,7 @@ class User {
 
 		// Search for user in pre-register
 		$db = new Database();
-		$pre_register_id = $db->get_id_email_pre_register( $user_login );
+		$pre_register_id = $db->get_id_email_pre_register( $user_email );
 
 		if ( ! $pre_register_id ) {
 			$res = [
@@ -48,7 +49,7 @@ class User {
 			'message' => __( 'Usuario registrado, revisa tu correo <strong>te debe llegar un enlace para establecer tu contraseña</strong>', 'customarea' )
 		];
 
-		$user_id = register_new_user( $user_login, $user_login );
+		$user_id = register_new_user( $user_login, $user_email );
 
 		// Update user_id in pre-register
 		$db->update_user_id_email_pre_register( $pre_register_id, $user_id );

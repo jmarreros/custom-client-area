@@ -9,6 +9,9 @@
 
         <small>Para el registro nos basamos en una lista de correos,<br> por lo que si no te puedes registrar <a href="/contacto">contáctanos.</a></small>
         <div class="form-controls">
+            <label for="username"><?= __('Usuario', 'clientqr') ?> <span>*</span></label>
+            <input id="username" type="text" name="username" maxlength="120" required>
+
             <label for="email"><?= __('Correo', 'customarea') ?> <span>*</span></label>
             <input class="input" type="email" id="email" name="email" maxlength="80" required>
         </div>
