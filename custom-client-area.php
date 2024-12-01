@@ -18,16 +18,15 @@ require __DIR__ . '/vendor/autoload.php';
 
 use dcms\customarea\backend\includes\Plugin;
 use dcms\customarea\backend\includes\Submenu;
-use dcms\customarea\backend\includes\Enqueue as EnqueueBackend;
 use dcms\customarea\backend\includes\PreRegister;
 use dcms\customarea\backend\includes\Settings;
+use dcms\customarea\backend\includes\Enqueue as EnqueueBackend;
+use dcms\customarea\backend\includes\User as UserBackend;
 
 use dcms\customarea\frontend\includes\Shortcode;
+use dcms\customarea\frontend\includes\Redirect;
 use dcms\customarea\frontend\includes\Enqueue as EnqueueFrontend;
-
 use dcms\customarea\frontend\includes\User as UserFrontend;
-
-use dcms\customarea\includes\Redirect;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -50,6 +49,8 @@ final class Loader {
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_LOGIN', 'customarea_login' );
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_LOGOUT', 'customarea_logout' );
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_REGISTER', 'customarea_register' );
+		define( 'DCMS_CUSTOMAREA_SHORTCODE_AFFILIATION_FORM', 'customarea_affiliation' );
+
 
 //		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA', 'customarea_client_data_emergency' );
 //		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_CONNECTION_DATA', 'customarea_client_data_connection' );
@@ -85,10 +86,13 @@ final class Loader {
 		new Plugin();
 		new SubMenu();
 		new EnqueueBackend();
+		new UserBackend();
+
 		new Shortcode();
 		new EnqueueFrontend();
-		new PreRegister();
 		new UserFrontend();
+
+		new PreRegister();
 		new Settings();
 		new Redirect();
 	}

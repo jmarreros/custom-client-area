@@ -19,7 +19,7 @@ class Settings {
 			'customarea_fields' );
 
 		add_settings_field( 'customarea_register_page',
-			__( 'Slug página de registro', 'customarea' ),
+			__( 'Página de registro', 'customarea' ),
 			[ $this, 'client_area_select' ],
 			'customarea_fields',
 			'form_pages_section',
@@ -30,7 +30,7 @@ class Settings {
 		);
 
 		add_settings_field( 'customarea_login_page',
-			__( 'Slug página de login', 'customarea' ),
+			__( 'Página de login', 'customarea' ),
 			[ $this, 'client_area_select' ],
 			'customarea_fields',
 			'form_pages_section',
@@ -39,6 +39,19 @@ class Settings {
 				'required'  => true
 			]
 		);
+
+		add_settings_field( 'customarea_public_page',
+			__( 'Página de afiliación', 'customarea' ),
+			[ $this, 'client_area_select' ],
+			'customarea_fields',
+			'form_pages_section',
+			[
+				'label_for'   => 'client_affiliation_page',
+				'description' => __( 'Se mostrará el formulario de afiliación', 'customarea' ),
+				'required'    => true
+			]
+		);
+
 
 		add_settings_field( 'customarea_area_page',
 			__( 'Slug página de área de cliente', 'customarea' ),
@@ -51,40 +64,6 @@ class Settings {
 			]
 		);
 
-		add_settings_field( 'customarea_area_page_redirect',
-			__( 'Redirección', 'customarea' ),
-			[ $this, 'client_area_checkbox' ],
-			'customarea_fields',
-			'form_pages_section',
-			[
-				'label_for' => 'client_area_page_redirect',
-				'text'      => __( 'Redirigir a la página de area de cliente en lugar de página de Mi Cuenta de WooCommerce', 'customarea' ),
-			]
-		);
-
-
-		add_settings_field( 'customarea_public_page',
-			__( 'Slug página de datos de emergencia públicos', 'customarea' ),
-			[ $this, 'client_area_select' ],
-			'customarea_fields',
-			'form_pages_section',
-			[
-				'label_for'   => 'client_public_page',
-				'description' => __( 'Para hacer efectivo los cambios ve a Ajustes > Enlaces permanentes y pulsa en guardar cambios.', 'customarea' ),
-				'required'    => true
-			]
-		);
-
-		add_settings_field( 'customarea_public_page_not_bought',
-			__( 'Slug página cuando no ha comprado producto', 'customarea' ),
-			[ $this, 'client_area_select' ],
-			'customarea_fields',
-			'form_pages_section',
-			[
-				'label_for'   => 'client_public_page_not_bought',
-				'description' => __( 'Se mostrará cuando el usuario no haya comprado el producto y trate de acceder a los datos de emergencia públicos', 'customarea' ),
-			]
-		);
 	}
 
 	// Callback section

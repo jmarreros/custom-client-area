@@ -124,15 +124,22 @@
     }
 }
 
-
-.customarea-register .form-controls{
+.customarea-container .form-controls{
     margin: 25px auto;
 }
 
-.customarea-register .form-footer .form-link{
+.customarea-container .form-footer .form-link{
     margin-top:20px;
 }
 
+.customarea-container .form-controls div:first-child{
+    margin-bottom: 16px;
+}
+
+.customarea-container .form-controls div label{
+    display: inline-block;
+    width: 100px;
+}
 
 /*Spinner*/
 .lds-ring {

@@ -9,8 +9,8 @@ class User {
 	public function __construct() {
 
 		add_action( 'wp_ajax_nopriv_dcms_register_user', [ $this, 'custom_register_user_ajax' ] );
-//		add_action( 'wp_ajax_nopriv_dcms_login_user', [ $this, 'custom_login_user_ajax' ] );
-		// add_filter( 'after_password_reset', [ $this, 'custom_redirect' ] );
+		add_action( 'wp_ajax_nopriv_dcms_login_user', [ $this, 'custom_login_user_ajax' ] );
+
 
 //		add_action( 'wp_ajax_dcms_save_data_connection', [ $this, 'custom_save_data_connection' ] );
 //		add_action( 'wp_ajax_dcms_save_data_emergency', [ $this, 'custom_save_data_emergency' ] );
@@ -97,13 +97,6 @@ class User {
 
 		wp_send_json( $res );
 	}
-
-	// #[NoReturn]
-	// public function custom_redirect(): void {
-	// 	$url_login = dcms_get_url_login();
-	// 	wp_redirect( $url_login );
-	// 	exit;
-	// }
 
 	public function custom_save_data_connection(): void {
 

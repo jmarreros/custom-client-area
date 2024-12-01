@@ -5,10 +5,18 @@ namespace dcms\customarea\backend\includes;
 class User {
 
 	public function __construct() {
+		add_action ('after_setup_theme', [$this, 'hide_admin_bar']);
+
 //		add_action( 'show_user_profile', [ $this, 'add_fields_profile' ] );
 //		add_action( 'edit_user_profile', [ $this, 'add_fields_profile' ] );
 //		add_action( 'personal_options_update', [ $this, 'save_fields_profile' ] );
 //		add_action( 'edit_user_profile_update', [ $this, 'save_fields_profile' ] );
+	}
+
+	public function hide_admin_bar(){
+		if (!current_user_can('administrator') && !is_admin()) {
+			show_admin_bar(false);
+		}
 	}
 
 	// Show profile fields in admin
