@@ -45,11 +45,16 @@ final class Loader {
 		define( 'DCMS_CUSTOMAREA_BASE_NAME', plugin_basename( __FILE__ ) );
 		define( 'DCMS_CUSTOMAREA_SUBMENU', 'tools.php' );
 
+		// User metadata
+		define( 'DCMS_CUSTOMAREA_FILL_FORM_AFFILIATION', 'dcms_fill_form_affiliation' );
+		define( 'DCMS_CUSTOMAREA_APPROVED_USER', 'dcms_approved_user' );
+
 		// Shortcodes
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_LOGIN', 'customarea_login' );
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_LOGOUT', 'customarea_logout' );
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_REGISTER', 'customarea_register' );
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_AFFILIATION_FORM', 'customarea_affiliation' );
+
 
 
 //		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA', 'customarea_client_data_emergency' );
@@ -83,18 +88,18 @@ final class Loader {
 		$this->define_constants();
 		$this->load_domain();
 		$this->add_link_plugin();
+
 		new Plugin();
 		new SubMenu();
+		new PreRegister();
+		new Settings();
 		new EnqueueBackend();
 		new UserBackend();
 
 		new Shortcode();
+		new Redirect();
 		new EnqueueFrontend();
 		new UserFrontend();
-
-		new PreRegister();
-		new Settings();
-		new Redirect();
 	}
 }
 

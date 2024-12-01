@@ -46,7 +46,7 @@ class Settings {
 			'customarea_fields',
 			'form_pages_section',
 			[
-				'label_for'   => 'client_affiliation_page',
+				'label_for'   => 'affiliate_form_page',
 				'description' => __( 'Se mostrará el formulario de afiliación', 'customarea' ),
 				'required'    => true
 			]
@@ -54,7 +54,7 @@ class Settings {
 
 
 		add_settings_field( 'customarea_area_page',
-			__( 'Slug página de área de cliente', 'customarea' ),
+			__( 'Página de área de cliente', 'customarea' ),
 			[ $this, 'client_area_select' ],
 			'customarea_fields',
 			'form_pages_section',

@@ -13,7 +13,7 @@ class User {
 //		add_action( 'edit_user_profile_update', [ $this, 'save_fields_profile' ] );
 	}
 
-	public function hide_admin_bar(){
+	public function hide_admin_bar():void{
 		if (!current_user_can('administrator') && !is_admin()) {
 			show_admin_bar(false);
 		}

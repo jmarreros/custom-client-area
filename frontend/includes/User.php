@@ -33,7 +33,7 @@ class User {
 		}
 
 		// Search for user in pre-register
-		$db = new Database();
+		$db              = new Database();
 		$pre_register_id = $db->get_id_email_pre_register( $user_email );
 
 		if ( ! $pre_register_id ) {
@@ -81,11 +81,17 @@ class User {
 			wp_set_current_user( $user_signon->ID );
 			wp_set_auth_cookie( $user_signon->ID );
 
+			if ( dcms_is_user_approved() ) {
+				$url_redirect = dcms_get_url_client_area();
+			} else {
+				$url_redirect = dcms_get_url_affiliate_form();
+			}
+
 			// All is ok
 			$res = [
 				'success'      => true,
 				'message'      => __( 'Redireccionando...', 'customarea' ),
-				'url_redirect' => dcms_get_url_client_area(),
+				'url_redirect' => $url_redirect,
 			];
 
 		} else {
@@ -173,8 +179,6 @@ class User {
 
 		wp_send_json( $res );
 	}
-
-
 
 }
 
