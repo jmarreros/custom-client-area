@@ -10,6 +10,7 @@ class Submenu {
 	// Constructor
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'register_submenu' ] );
+		add_action( 'admin_bar_menu', [ $this, 'add_toolbar_items' ], 100 );
 	}
 
 	// Register submenu
@@ -45,6 +46,14 @@ class Submenu {
 			[ $this, 'submenu_page_pre_register_callback' ]
 		);
 
+		add_submenu_page(
+			'customarea',
+			__( 'Aprobación Usuarios', 'customarea' ),
+			__( 'Aprobación Usuarios', 'customarea' ),
+			'manage_options',
+			'customarea-user-approval',
+			[ $this, 'submenu_page_user_approval_callback' ]
+		);
 
 		add_submenu_page(
 			'customarea',
@@ -65,10 +74,25 @@ class Submenu {
 	}
 
 	public function submenu_page_pre_register_callback(): void {
-		$db = new Database();
+		$db     = new Database();
 		$emails = $db->get_emails_pre_register();
 		$emails = implode( "\n", $emails );
 
 		include_once( DCMS_CUSTOMAREA_PATH . '/backend/views/pre-register.php' );
+	}
+
+	public function submenu_page_user_approval_callback(): void {
+//		$db = new Database();
+//		$users = $db->get_users_pending_approval();
+
+		include_once( DCMS_CUSTOMAREA_PATH . '/backend/views/user-approval.php' );
+	}
+
+	public function add_toolbar_items( $admin_bar ):void {
+		$admin_bar->add_menu( array(
+			'id'    => 'customarea',
+			'title' => '<span class="dashicons-before dashicons-admin-users">' . __( 'Aprobación Usuarios', 'customarea' ) . '</span>',
+			'href'  => admin_url( 'admin.php?page=customarea-user-approval' ),
+		) );
 	}
 }

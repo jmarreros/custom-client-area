@@ -11,8 +11,6 @@ class Form {
 
 	public function __construct() {
 
-		add_filter( 'the_title', [ $this, 'hide_title_page' ], 10, 2 );
-
 		$this->fields_simpa = [
 			'first_name'             => [
 				'group'    => 'personal',
@@ -364,22 +362,6 @@ class Form {
 			],
 		];
 
-	}
-
-	public function hide_title_page( $title, $id ): string {
-		$page_affiliate = get_option( 'customarea_options' )['affiliate_form_page'] ?? 0;
-
-		if ( $id == $page_affiliate && is_page($page_affiliate) ) {
-
-			error_log( print_r( 'Afiliación', true ) );
-			error_log( print_r( $page_affiliate, true ) );
-			error_log( print_r( $id, true ) );
-			error_log( print_r( $title, true ) );
-
-			return '';
-		}
-
-		return $title;
 	}
 
 }

@@ -56,8 +56,6 @@ final class Loader {
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_REGISTER', 'customarea_register' );
 		define( 'DCMS_CUSTOMAREA_SHORTCODE_AFFILIATION_FORM', 'customarea_affiliation' );
 
-
-
 //		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_EMERGENCY_DATA', 'customarea_client_data_emergency' );
 //		define( 'DCMS_CUSTOMAREA_SHORTCODE_CLIENT_CONNECTION_DATA', 'customarea_client_data_connection' );
 //		define( 'DCMS_CUSTOMAREA_SHORTCODE_QR_CODE', 'customarea_code' );

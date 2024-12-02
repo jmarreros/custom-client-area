@@ -10,3 +10,9 @@
     height: 100vh;
     min-height: 100vh;
 }
+
+#wp-admin-bar-customarea span:before{
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 4px;
+}
