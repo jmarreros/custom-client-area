@@ -1,3 +1,3 @@
 <section class="affiliation-form">
-	Formulario de afiliación
+	<?php include_once 'simpa-form.php' ?>
 </section>

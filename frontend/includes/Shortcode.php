@@ -95,6 +95,7 @@ class Shortcode {
 //		$show_save_button = true;
 //		$show_title       = true;
 
+
 		ob_start();
 		include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/user-affiliation-form.php' );
 

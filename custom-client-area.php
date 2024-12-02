@@ -27,6 +27,7 @@ use dcms\customarea\frontend\includes\Shortcode;
 use dcms\customarea\frontend\includes\Redirect;
 use dcms\customarea\frontend\includes\Enqueue as EnqueueFrontend;
 use dcms\customarea\frontend\includes\User as UserFrontend;
+use dcms\customarea\frontend\includes\Form;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -100,6 +101,7 @@ final class Loader {
 		new Redirect();
 		new EnqueueFrontend();
 		new UserFrontend();
+		new Form();
 	}
 }
 

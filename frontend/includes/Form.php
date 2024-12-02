@@ -10,200 +10,203 @@ class Form {
 	private array $fields_mir = [];
 
 	public function __construct() {
+
+		add_filter( 'the_title', [ $this, 'hide_title_page' ], 10, 2 );
+
 		$this->fields_simpa = [
-			'first_name'     => [
+			'first_name'             => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Nombre', 'customarea' ),
 				'required' => 'required',
 			],
-			'last_name'     => [
+			'last_name'              => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Apellidos', 'customarea' ),
 				'required' => 'required',
 			],
-			'address'     => [
+			'address'                => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Dirección', 'customarea' ),
 				'required' => 'required',
 			],
-			'poblacion'     => [
+			'poblacion'              => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Población', 'customarea' ),
 				'required' => 'required',
 			],
-			'cod-postal'     => [
+			'cod-postal'             => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'C. Postal', 'customarea' ),
 				'required' => 'required',
 			],
-			'phone'     => [
+			'phone'                  => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Teléfonos', 'customarea' ),
 				'required' => 'required',
 			],
-			'email'     => [
+			'email'                  => [
 				'group'    => 'personal',
 				'type'     => 'email',
 				'label'    => __( 'Email', 'customarea' ),
 				'required' => 'required',
 			],
-			'fecha-nacimiento'    => [
+			'fecha-nacimiento'       => [
 				'group'    => 'personal',
 				'type'     => 'date',
 				'label'    => __( 'Fecha de Nacimiento', 'customarea' ),
 				'required' => 'required',
 			],
-			'nif'    => [
+			'nif'                    => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'NIF', 'customarea' ),
 				'required' => 'required',
 			],
-			'año-licenciatura'    => [
+			'año-licenciatura'       => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Año Licenciatura', 'customarea' ),
 				'required' => 'required',
 			],
-			'profesion'    => [
+			'profesion'              => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Profesión', 'customarea' ),
 				'required' => 'required',
 			],
-			'centro-trabajo'    => [
+			'centro-trabajo'         => [
 				'group'    => 'profesional',
 				'type'     => 'text',
 				'label'    => __( 'Centro de Trabajo', 'customarea' ),
 				'required' => 'required',
 			],
-			'especialidad'    => [
+			'especialidad'           => [
 				'group'    => 'profesional',
 				'type'     => 'text',
 				'label'    => __( 'Especialidad', 'customarea' ),
 				'required' => 'required',
 			],
-			'categoria'    => [
+			'categoria'              => [
 				'group'    => 'profesional',
 				'type'     => 'text',
 				'label'    => __( 'Categoría', 'customarea' ),
 				'required' => 'required',
 			],
-			'atencion-primaria'    => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Atención Primaria', 'customarea' ),
+			'atencion-primaria'      => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Atención Primaria', 'customarea' ),
 			],
-			'atencion-especializada'    => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Atención Especializada', 'customarea' ),
+			'atencion-especializada' => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Atención Especializada', 'customarea' ),
 			],
-			'privada'    => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Privada', 'customarea' ),
+			'privada'                => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Privada', 'customarea' ),
 			],
-			'dessarrolla-docencia' => [
-				'group'    => 'profesional',
-				'type'     => 'text',
-				'label'    => __( 'Desarrolla Función Docente', 'customarea' ),
+			'dessarrolla-docencia'   => [
+				'group' => 'profesional',
+				'type'  => 'text',
+				'label' => __( 'Desarrolla Función Docente', 'customarea' ),
 			],
-			'realizo-mir' => [
-				'group'    => 'profesional',
-				'type'     => 'text',
-				'label'    => __( 'Realizó el MIR', 'customarea' ),
+			'realizo-mir'            => [
+				'group' => 'profesional',
+				'type'  => 'text',
+				'label' => __( 'Realizó el MIR', 'customarea' ),
 			],
-			'dedicacion-exclusiva' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Dedicación Exclusiva', 'customarea' ),
+			'dedicacion-exclusiva'   => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Dedicación Exclusiva', 'customarea' ),
 			],
-			'propietario' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Propietario', 'customarea' ),
+			'propietario'            => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Propietario', 'customarea' ),
 			],
-			'interino' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Interino', 'customarea' ),
+			'interino'               => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Interino', 'customarea' ),
 			],
-			'eventual' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Eventual', 'customarea' ),
+			'eventual'               => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Eventual', 'customarea' ),
 			],
-			'sustituto' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Sustituto', 'customarea' ),
+			'sustituto'              => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Sustituto', 'customarea' ),
 			],
-			'sac' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'SAC', 'customarea' ),
+			'sac'                    => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'SAC', 'customarea' ),
 			],
-			'contrato-guardias' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Contrato Guardias', 'customarea' ),
+			'contrato-guardias'      => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Contrato Guardias', 'customarea' ),
 			],
-			'mir' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'MIR', 'customarea' ),
+			'mir'                    => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'MIR', 'customarea' ),
 			],
-			'paro' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Paro', 'customarea' ),
+			'paro'                   => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Paro', 'customarea' ),
 			],
-			'otros' => [
-				'group'    => 'profesional',
-				'type'     => 'text',
-				'label'    => __( 'Otros', 'customarea' ),
+			'otros'                  => [
+				'group' => 'profesional',
+				'type'  => 'text',
+				'label' => __( 'Otros', 'customarea' ),
 			],
-			'estatuario' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Estatuario', 'customarea' ),
+			'estatuario'             => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Estatuario', 'customarea' ),
 			],
-			'laboral' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Laboral', 'customarea' ),
+			'laboral'                => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Laboral', 'customarea' ),
 			],
-			'funcionario' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Funcionario', 'customarea' ),
+			'funcionario'            => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Funcionario', 'customarea' ),
 			],
-			'billing_first_name' => [
+			'billing_first_name'     => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'Nombre', 'customarea' ),
 				'required' => 'required',
 			],
-			'billing_last_name' => [
+			'billing_last_name'      => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'Apellidos', 'customarea' ),
 				'required' => 'required',
 			],
-			'banco' => [
+			'banco'                  => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'Banco o Caja', 'customarea' ),
 				'required' => 'required',
 			],
-			'iban' => [
+			'iban'                   => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'IBAN', 'customarea' ),
@@ -211,110 +214,109 @@ class Form {
 			],
 		];
 
-
 		$this->fields_mir = [
-			'first_name'     => [
+			'first_name'                    => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Nombre', 'customarea' ),
 				'required' => 'required',
 			],
-			'last_name'     => [
+			'last_name'                     => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Apellidos', 'customarea' ),
 				'required' => 'required',
 			],
-			'address'     => [
+			'address'                       => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Dirección', 'customarea' ),
 				'required' => 'required',
 			],
-			'poblacion'     => [
+			'poblacion'                     => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Población', 'customarea' ),
 				'required' => 'required',
 			],
-			'cod-postal'     => [
+			'cod-postal'                    => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'C. Postal', 'customarea' ),
 				'required' => 'required',
 			],
-			'phone'     => [
+			'phone'                         => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Teléfonos', 'customarea' ),
 				'required' => 'required',
 			],
-			'movil' => [
+			'movil'                         => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Móvil', 'customarea' ),
 				'required' => 'required',
 			],
-			'Whatsapp' => [
+			'Whatsapp'                      => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'WhatsApp', 'customarea' ),
 				'required' => 'required',
 			],
-			'phone2' => [
-				'group'    => 'personal',
-				'type'     => 'text',
-				'label'    => __( 'Otro Teléfono', 'customarea' ),
+			'phone2'                        => [
+				'group' => 'personal',
+				'type'  => 'text',
+				'label' => __( 'Otro Teléfono', 'customarea' ),
 			],
-			'email'     => [
+			'email'                         => [
 				'group'    => 'personal',
 				'type'     => 'email',
 				'label'    => __( 'Email', 'customarea' ),
 				'required' => 'required',
 			],
-			'fecha-nacimiento'    => [
+			'fecha-nacimiento'              => [
 				'group'    => 'personal',
 				'type'     => 'date',
 				'label'    => __( 'Fecha de Nacimiento', 'customarea' ),
 				'required' => 'required',
 			],
-			'nif'    => [
+			'nif'                           => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'NIF', 'customarea' ),
 				'required' => 'required',
 			],
-			'año-licenciatura'    => [
+			'año-licenciatura'              => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Año Licenciatura', 'customarea' ),
 				'required' => 'required',
 			],
-			'profesion'    => [
+			'profesion'                     => [
 				'group'    => 'personal',
 				'type'     => 'text',
 				'label'    => __( 'Profesión', 'customarea' ),
 				'required' => 'required',
 			],
-			'especialidad' => [
+			'especialidad'                  => [
 				'group'    => 'profesional',
 				'type'     => 'text',
 				'label'    => __( 'Especialidad', 'customarea' ),
 				'required' => 'required',
 			],
-			'centro-docente' => [
+			'centro-docente'                => [
 				'group'    => 'profesional',
 				'type'     => 'text',
 				'label'    => __( 'Centro Docente', 'customarea' ),
 				'required' => 'required',
 			],
-			'año-residencia-actual' => [
+			'año-residencia-actual'         => [
 				'group'    => 'profesional',
 				'type'     => 'text',
 				'label'    => __( 'Año de Residencia Actual', 'customarea' ),
 				'required' => 'required',
 			],
-			'fecha-inicio-residencia' => [
+			'fecha-inicio-residencia'       => [
 				'group'    => 'profesional',
 				'type'     => 'date',
 				'label'    => __( 'Fecha de Inicio de Residencia', 'customarea' ),
@@ -326,35 +328,35 @@ class Form {
 				'label'    => __( 'Fecha de Finalización de Residencia', 'customarea' ),
 				'required' => 'required',
 			],
-			'otras-especialidades-mir' => [
-				'group'    => 'profesional',
-				'type'     => 'text',
-				'label'    => __( 'Otras especialidades Via MIR', 'customarea' ),
+			'otras-especialidades-mir'      => [
+				'group' => 'profesional',
+				'type'  => 'text',
+				'label' => __( 'Otras especialidades Via MIR', 'customarea' ),
 			],
-			'recibir-informacion-sindical' => [
-				'group'    => 'profesional',
-				'type'     => 'checkbox',
-				'label'    => __( 'Recibir Información Sindical', 'customarea' ),
+			'recibir-informacion-sindical'  => [
+				'group' => 'profesional',
+				'type'  => 'checkbox',
+				'label' => __( 'Recibir Información Sindical', 'customarea' ),
 			],
-			'billing_first_name' => [
+			'billing_first_name'            => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'Nombre', 'customarea' ),
 				'required' => 'required',
 			],
-			'billing_last_name' => [
+			'billing_last_name'             => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'Apellidos', 'customarea' ),
 				'required' => 'required',
 			],
-			'banco' => [
+			'banco'                         => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'Banco o Caja', 'customarea' ),
 				'required' => 'required',
 			],
-			'iban' => [
+			'iban'                          => [
 				'group'    => 'billing',
 				'type'     => 'text',
 				'label'    => __( 'IBAN', 'customarea' ),
@@ -364,7 +366,25 @@ class Form {
 
 	}
 
-//
+	public function hide_title_page( $title, $id ): string {
+		$page_affiliate = get_option( 'customarea_options' )['affiliate_form_page'] ?? 0;
+
+		if ( $id == $page_affiliate && is_page($page_affiliate) ) {
+
+			error_log( print_r( 'Afiliación', true ) );
+			error_log( print_r( $page_affiliate, true ) );
+			error_log( print_r( $id, true ) );
+			error_log( print_r( $title, true ) );
+
+			return '';
+		}
+
+		return $title;
+	}
+
+}
+
+
 //	public function get_fields_client_area() :array{
 //		return $this->fields;
 //	}
@@ -390,4 +410,3 @@ class Form {
 //
 //		return $fields;
 //	}
-}
