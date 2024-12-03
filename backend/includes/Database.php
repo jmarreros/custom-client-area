@@ -51,4 +51,8 @@ class Database {
 	public function update_user_id_email_pre_register($id, $user_id): void {
 		$this->wpdb->update( $this->table_pre_register, [ 'id' => $id ], [ 'user_id' => $user_id ] );
 	}
+
+	public function count_pending_user_approval(){
+		return $this->wpdb->get_var( "SELECT COUNT(user_id) FROM {$this->wpdb->usermeta} WHERE meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' AND meta_value = 0" );
+	}
 }

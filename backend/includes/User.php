@@ -21,20 +21,10 @@ class User {
 	}
 
 	public function add_filter_pending_users( $views ) {
-		// Count the number of users with the pending status in user meta table DCMS_CUSTOMAREA_APPROVED_USER
-		global $wpdb;
-		$count = $wpdb->get_var( "
-			SELECT COUNT(user_id)
-			FROM $wpdb->usermeta
-			WHERE meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "'
-			AND meta_value = 0" );
+		$db    = new Database();
+		$count = $db->count_pending_user_approval();
 
-		// URL of the filter
-//		$url = add_query_arg( 'approved_user', '0', admin_url( 'users.php' ) );
-		$url = add_query_arg(
-			array_merge( $_GET, [ 'approved_user' => '0' ] ),
-			admin_url( 'users.php' )
-		);
+		$url = add_query_arg( array_merge( $_GET, [ 'approved_user' => '0' ] ), admin_url( 'users.php' ) );
 
 		// Add link to the list of views
 		$views['pending'] = sprintf(
@@ -70,7 +60,7 @@ class User {
 	}
 
 	public function add_columns_user( $columns ): array {
-		$columns['pdfs']     = 'PDF';
+		$columns['pdfs']          = 'PDF';
 		$columns['approved_user'] = 'Estado';
 
 		return $columns;
