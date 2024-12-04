@@ -17,6 +17,7 @@ $count_approval = $count_approval ?? 0;
     <table class="wp-list-table widefat fixed striped users">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Email</th>
             <th>Fecha de Registro</th>
@@ -26,7 +27,8 @@ $count_approval = $count_approval ?? 0;
         <tbody>
 		<?php foreach ( $users as $user ) : ?>
             <tr>
-                <td><?php echo $user->display_name ?></td>
+                <td><?php echo $user->ID ?></td>
+                <td><?php echo $user->display_name ?: $user->user_login ?></td>
                 <td><?php echo $user->user_email ?></td>
                 <td><?php echo $user->user_registered ?></td>
                 <td>

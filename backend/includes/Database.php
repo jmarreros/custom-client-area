@@ -56,4 +56,11 @@ class Database {
 		return $this->wpdb->get_var( "SELECT COUNT(user_id) FROM {$this->wpdb->usermeta} WHERE meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' AND meta_value = " . $state );
 	}
 
+	public function get_users_per_state( $state, $limit, $offset ): array {
+		$users = $this->wpdb->get_results( "SELECT * FROM {$this->wpdb->users} u 
+													INNER JOIN {$this->wpdb->usermeta} um ON u.ID = um.user_id
+  													WHERE um.meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' AND um.meta_value = " . $state . " LIMIT $limit OFFSET $offset" );
+
+		return $users ?? [];
+	}
 }
