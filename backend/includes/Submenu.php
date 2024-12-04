@@ -2,6 +2,8 @@
 
 namespace dcms\customarea\backend\includes;
 
+use dcms\customarea\helpers\State;
+
 /**
  * Class for creating a dashboard submenu
  */
@@ -82,13 +84,25 @@ class Submenu {
 	}
 
 	public function submenu_page_user_approval_callback(): void {
-//		$db = new Database();
-//		$users = $db->get_users_pending_approval();
+		$db             = new Database();
+		$count_pending  = $db->count_user_state( State::PENDING );
+		$count_approval = $db->count_user_state( State::APPROVED );
+		$count_rejected = $db->count_user_state( State::REJECTED );
+
+		// Pagination
+		$paged  = abs($_GET['paged_user'] ?? 1);
+		$limit  = get_option( 'posts_per_page' ) ?? 10;
+		$offset = ( $paged - 1 ) * $limit;
+
+		// state parameter
+		$state = $_GET['state_user'] ?? State::PENDING;
+
+
 
 		include_once( DCMS_CUSTOMAREA_PATH . '/backend/views/user-approval.php' );
 	}
 
-	public function add_toolbar_items( $admin_bar ):void {
+	public function add_toolbar_items( $admin_bar ): void {
 		$admin_bar->add_menu( array(
 			'id'    => 'customarea',
 			'title' => '<span class="dashicons-before dashicons-admin-users">' . __( 'Aprobación Usuarios', 'customarea' ) . '</span>',

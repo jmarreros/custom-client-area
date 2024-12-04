@@ -2,6 +2,8 @@
 
 namespace dcms\customarea\backend\includes;
 
+use dcms\customarea\helpers\State;
+
 class User {
 
 	public function __construct() {
@@ -22,9 +24,9 @@ class User {
 
 	public function add_filter_pending_users( $views ) {
 		$db    = new Database();
-		$count = $db->count_pending_user_approval();
+		$count = $db->count_user_state( State::PENDING );
 
-		$url = add_query_arg( array_merge( $_GET, [ 'approved_user' => '0' ] ), admin_url( 'users.php' ) );
+		$url = add_query_arg( array_merge( $_GET, [ 'approved_user' => State::PENDING ] ), admin_url( 'users.php' ) );
 
 		// Add link to the list of views
 		$views['pending'] = sprintf(
@@ -42,11 +44,11 @@ class User {
 			return;
 		}
 
-		if ( isset( $_GET['approved_user'] ) && $_GET['approved_user'] === '0' ) {
+		if ( isset( $_GET['approved_user'] ) && $_GET['approved_user'] === State::PENDING ) {
 			$query->set( 'meta_query', [
 				[
 					'key'     => DCMS_CUSTOMAREA_APPROVED_USER,
-					'value'   => 0,
+					'value'   => State::PENDING,
 					'compare' => '=',
 				],
 			] );
@@ -73,11 +75,11 @@ class User {
 
 		if ( $column_name === 'approved_user' ) {
 			$approved = get_user_meta( $user_id, DCMS_CUSTOMAREA_APPROVED_USER, true );
-			if ( $approved == - 1 ) {
+			if ( $approved == State::REJECTED ) {
 				return '<span class="tag tag-no-approved">Rechazado</span>';
-			} elseif ( $approved == 1 ) {
+			} elseif ( $approved == State::APPROVED ) {
 				return '<span class="tag tag-approved">Aprobado</span>';
-			} elseif( $approved == 0 ) {
+			} elseif ( $approved == State::PENDING ) {
 				return '<span class="tag tag-pending">Pendiente</span>';
 			} else {
 				return '';

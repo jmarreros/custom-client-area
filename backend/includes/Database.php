@@ -44,15 +44,16 @@ class Database {
 		return $this->wpdb->get_col( "SELECT email FROM $this->table_pre_register WHERE user_id IS NULL ORDER BY email" );
 	}
 
-	public function get_id_email_pre_register($email): int {
+	public function get_id_email_pre_register( $email ): int {
 		return $this->wpdb->get_var( $this->wpdb->prepare( "SELECT id FROM $this->table_pre_register WHERE email = %s", $email ) ) ?? 0;
 	}
 
-	public function update_user_id_email_pre_register($id, $user_id): void {
+	public function update_user_id_email_pre_register( $id, $user_id ): void {
 		$this->wpdb->update( $this->table_pre_register, [ 'id' => $id ], [ 'user_id' => $user_id ] );
 	}
 
-	public function count_pending_user_approval(){
-		return $this->wpdb->get_var( "SELECT COUNT(user_id) FROM {$this->wpdb->usermeta} WHERE meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' AND meta_value = 0" );
+	public function count_user_state( $state ): int {
+		return $this->wpdb->get_var( "SELECT COUNT(user_id) FROM {$this->wpdb->usermeta} WHERE meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' AND meta_value = " . $state );
 	}
+
 }
