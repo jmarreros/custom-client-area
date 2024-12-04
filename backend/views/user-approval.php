@@ -7,6 +7,7 @@
     <ul class="subsubsub">
         <li><a href="#" class="current" >Pendientes <span class="count">(1)</span></a> |</li>
         <li><a href="#">Aprobados <span class="count">(4)</span></a></li>
+        <li><a href="#">Rechazados <span class="count">(2)</span></a></li>
     </ul>
 
 

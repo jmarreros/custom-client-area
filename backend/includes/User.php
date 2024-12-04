@@ -73,10 +73,14 @@ class User {
 
 		if ( $column_name === 'approved_user' ) {
 			$approved = get_user_meta( $user_id, DCMS_CUSTOMAREA_APPROVED_USER, true );
-			if ( $approved ) {
-				return 'Aprobado';
+			if ( $approved == - 1 ) {
+				return '<span class="tag tag-no-approved">Rechazado</span>';
+			} elseif ( $approved == 1 ) {
+				return '<span class="tag tag-approved">Aprobado</span>';
+			} elseif( $approved == 0 ) {
+				return '<span class="tag tag-pending">Pendiente</span>';
 			} else {
-				return 'Pendiente';
+				return '';
 			}
 		}
 

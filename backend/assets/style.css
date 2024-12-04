@@ -16,3 +16,22 @@
     margin-top: 5px;
     margin-right: 4px;
 }
+
+.tag{
+    color:white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+}
+
+.tag-approved{
+    background-color: #4CAF50;
+}
+
+.tag-no-approved{
+    background-color: #F44336;
+}
+
+.tag-pending{
+    background-color: #e5ae09;
+}

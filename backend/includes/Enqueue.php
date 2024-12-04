@@ -21,7 +21,7 @@ class Enqueue {
 
 
 		if ( $hook === 'users.php' || $hook === 'user-edit.php' || $hook === 'profile.php' ) {
-			wp_enqueue_script( 'customarea-admin-user-script', DCMS_CUSTOMAREA_URL . 'backend/assets/user-script.js', [ 'jquery' ], '1.0.0', true );
+			wp_enqueue_style( 'customarea-admin-style' );
 		}
 	}
 }

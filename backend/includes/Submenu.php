@@ -23,18 +23,18 @@ class Submenu {
 			__( 'Area de cliente', 'customarea' ),
 			'manage_options',
 			'customarea',
-			[ $this, 'submenu_page_settings_callback' ],
+			[ $this, 'submenu_page_user_approval_callback' ],
 			'dashicons-admin-users',
 			70
 		);
 
 		add_submenu_page(
 			'customarea',
-			__( 'Configuración', 'customarea' ),
-			__( 'Configuración', 'customarea' ),
+			__( 'Aprobación Usuarios', 'customarea' ),
+			__( 'Aprobación Usuarios', 'customarea' ),
 			'manage_options',
 			'customarea',
-			[ $this, 'submenu_page_settings_callback' ]
+			[ $this, 'submenu_page_user_approval_callback' ]
 		);
 
 		add_submenu_page(
@@ -48,11 +48,11 @@ class Submenu {
 
 		add_submenu_page(
 			'customarea',
-			__( 'Aprobación Usuarios', 'customarea' ),
-			__( 'Aprobación Usuarios', 'customarea' ),
+			__( 'Configuración', 'customarea' ),
+			__( 'Configuración', 'customarea' ),
 			'manage_options',
-			'customarea-user-approval',
-			[ $this, 'submenu_page_user_approval_callback' ]
+			'customarea-configuration',
+			[ $this, 'submenu_page_settings_callback' ]
 		);
 
 		add_submenu_page(
