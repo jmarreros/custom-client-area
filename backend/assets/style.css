@@ -35,3 +35,18 @@
 .tag-pending{
     background-color: #e5ae09;
 }
+
+.subsubsub{
+    margin-bottom: 10px;
+}
+
+.tablenav{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tablenav-pages a{
+    display: inline-block;
+    text-align: center;
+    padding: 4px;
+}

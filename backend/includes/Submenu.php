@@ -84,21 +84,39 @@ class Submenu {
 	}
 
 	public function submenu_page_user_approval_callback(): void {
-		$db             = new Database();
-		$count_pending  = $db->count_user_state( State::PENDING );
-		$count_approval = $db->count_user_state( State::APPROVED );
-		$count_rejected = $db->count_user_state( State::REJECTED );
 
-		// Pagination
-		$paged  = abs($_GET['paged_user'] ?? 1);
-		$limit  = get_option( 'posts_per_page' ) ?? 10;
-		$offset = ( $paged - 1 ) * $limit;
-
-		// state parameter
 		$state = $_GET['state_user'] ?? State::PENDING;
 
-		$db = new Database();
+		$db          = new Database();
+
+		$count_rejected = $db->count_user_state( State::REJECTED );
+		$count_pending  = $db->count_user_state( State::PENDING );
+		$count_approval = $db->count_user_state( State::APPROVED );
+
+		switch ( $state ){
+			case State::REJECTED:
+				$count_items = $count_rejected;
+				break;
+			case State::PENDING:
+				$count_items = $count_pending;
+				break;
+			case State::APPROVED:
+				$count_items = $count_approval;
+				break;
+			default:
+				$count_items = 0;
+		}
+
+		// Pagination
+		$paged       = abs( $_GET['paged_user'] ?? 1 );
+		$limit       = get_option( 'posts_per_page' ) ?? 10;
+		$offset      = ( $paged - 1 ) * $limit;
+		$total_pages = ceil( $count_items / $limit );
+
+		// state parameter
+		$db    = new Database();
 		$users = $db->get_users_per_state( $state, $limit, $offset );
+
 
 		include_once( DCMS_CUSTOMAREA_PATH . '/backend/views/user-approval.php' );
 	}
