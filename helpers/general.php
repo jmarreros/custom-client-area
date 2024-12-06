@@ -22,13 +22,6 @@ function dcms_is_user_approved(): bool {
 	return $approved === '1';
 }
 
-function dcms_user_fill_form_affiliation(): bool {
-	$user_id   = get_current_user_id();
-	$fill_form = get_user_meta( $user_id, DCMS_CUSTOMAREA_FILL_FORM_AFFILIATION, true );
-
-	return $fill_form === '1';
-}
-
 function dcms_get_url_client_area(): string {
 	$id_page = get_option( 'customarea_options' )['client_area_page'];
 
@@ -61,5 +54,55 @@ function get_url_by_id( $id ): string {
 	}
 
 	return $url;
+}
+
+
+function create_control_HTML( $field ): string {
+	$type     = $field['type'] ?? '';
+	$name     = sanitize_title($field['name']) ?? '';
+	$value    = $field['value'] ?? '';
+	$label    = $field['label'] ?? '';
+	$required = $field['required'] ?? false;
+	$options  = $field['options'] ?? [];
+
+	$required = $required ? 'required' : '';
+	$control  = '';
+	switch ( $type ) {
+		case 'text':
+			$control = "<input type='text' name='$name' value='$value' class='form-control' $required>";
+			break;
+		case 'email':
+			$control = "<input type='email' name='$name' value='$value' class='form-control' $required>";
+			break;
+		case 'password':
+			$control = "<input type='password' name='$name' value='$value' class='form-control' $required>";
+			break;
+		case 'textarea':
+			$control = "<textarea name='$name' class='form-control' $required>$value</textarea>";
+			break;
+		case 'select':
+			$control = "<select name='$name' class='form-control' $required>";
+			foreach ( $options as $option ) {
+				$selected = $option['value'] === $value ? 'selected' : '';
+				$control  .= "<option value='{$option['value']}' $selected>{$option['text']}</option>";
+			}
+			$control .= '</select>';
+			break;
+		case 'radio':
+			foreach ( $options as $option ) {
+				$checked = $option['value'] === $value ? 'checked' : '';
+				$control .= "<input type='radio' name='$name' value='{$option['value']}' $checked> {$option['text']}";
+			}
+			break;
+		case 'checkbox':
+			$checked = $value === '1' ? 'checked' : '';
+			$control = "<input type='checkbox' name='$name' value='1' $checked>";
+			break;
+	}
+
+	return "<div class='form-group'>
+				<label for='$name'>$label</label>
+				$control
+			</div>";
 }
 

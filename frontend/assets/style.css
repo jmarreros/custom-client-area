@@ -16,7 +16,7 @@
     color: red;
 }
 
-.customarea-form .form-controls .input{
+.customarea-form .form-controls .input {
     border: 1px solid #ccc;
     padding: 10px;
 }
@@ -31,7 +31,7 @@
     background-color: #efefef;
 }
 
-.customarea-form fieldset legend{
+.customarea-form fieldset legend {
     border: 1px solid #ccc;
     background-color: #efefef;
     font-weight: bold;
@@ -60,60 +60,60 @@
     margin-top: 20px;
 }
 
-.customarea-form .row-controls{
+.customarea-form .row-controls {
     display: flex;
     gap: 20px;
-    flex-wrap:wrap;
-}
-
-.customarea-form .row-controls > p{
-    flex: 1;
-    min-width:120px;
-}
-
-.customarea-form .row-controls.one-column{
     flex-wrap: wrap;
-    gap:0;
 }
 
-.customarea-form .row-controls.one-column p > *{
+.customarea-form .row-controls > p {
+    flex: 1;
+    min-width: 120px;
+}
+
+.customarea-form .row-controls.one-column {
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.customarea-form .row-controls.one-column p > * {
     width: 100%;
     display: block;
 }
 
-.customarea-form .row-controls.one-column > p{
+.customarea-form .row-controls.one-column > p {
     width: 100%;
     flex: 100%;
 }
 
-.customarea-form fieldset textarea{
+.customarea-form fieldset textarea {
     resize: none;
 }
 
-.customarea-form.public .form-controls label{
-    color:black;
+.customarea-form.public .form-controls label {
+    color: black;
 }
 
-.customarea-form.public .form-controls .input{
+.customarea-form.public .form-controls .input {
     background-color: #ffd8cd;
-    color:black;
-    border:1px solid black;
+    color: black;
+    border: 1px solid black;
 }
 
-.customarea-form.public fieldset{
+.customarea-form.public fieldset {
     background-color: #f5f5f5;
 }
 
-.customarea-form.public fieldset legend{
-    background-color:coral;
-    color:white;
+.customarea-form.public fieldset legend {
+    background-color: coral;
+    color: white;
 }
 
-.custom_checkout_fields h5{
+.custom_checkout_fields h5 {
     margin-bottom: 12px;
 }
 
-.custom_checkout_fields h5 + p{
+.custom_checkout_fields h5 + p {
     margin-bottom: 30px;
 }
 
@@ -124,19 +124,19 @@
     }
 }
 
-.customarea-container .form-controls{
+.customarea-container .form-controls {
     margin: 25px auto;
 }
 
-.customarea-container .form-footer .form-link{
-    margin-top:20px;
+.customarea-container .form-footer .form-link {
+    margin-top: 20px;
 }
 
-.customarea-container .form-controls div:first-child{
+.customarea-container .form-controls div:first-child {
     margin-bottom: 16px;
 }
 
-.customarea-container .form-controls div label{
+.customarea-container .form-controls div label {
     display: inline-block;
     width: 100px;
 }
@@ -185,4 +185,9 @@
 
 .hide {
     display: none;
+}
+
+.form-group label {
+    display: inline-block;
+    min-width: 100px;
 }

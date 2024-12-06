@@ -77,6 +77,7 @@ class Shortcode {
 
 		if ( ! is_user_logged_in() ) {
 			$url_login = dcms_get_url_login();
+
 			return sprintf( __( 'No tienes permisos para acceder a esta sección, <a href="%s">conéctate</a>', 'customarea' ), $url_login );
 		}
 
@@ -90,11 +91,12 @@ class Shortcode {
 
 
 		// Get fields for the form
-//		$form             = new Form();
-//		$fields           = $form->get_fields_client_area();
-//		$show_save_button = true;
-//		$show_title       = true;
+		$form             = new Form();
+		$fields           = $form->get_fields_affiliation();
+		$show_save_button = true;
+		$show_title       = true;
 
+		error_log( print_r( $fields, true ) );
 
 		ob_start();
 		include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/user-affiliation-form.php' );
