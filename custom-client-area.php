@@ -22,6 +22,7 @@ use dcms\customarea\backend\includes\PreRegister;
 use dcms\customarea\backend\includes\Settings;
 use dcms\customarea\backend\includes\Enqueue as EnqueueBackend;
 use dcms\customarea\backend\includes\User as UserBackend;
+use dcms\customarea\backend\includes\Approval;
 
 use dcms\customarea\frontend\includes\Shortcode;
 use dcms\customarea\frontend\includes\Redirect;
@@ -95,6 +96,7 @@ final class Loader {
 		new Settings();
 		new EnqueueBackend();
 		new UserBackend();
+		new Approval();
 
 		new Shortcode();
 		new Redirect();

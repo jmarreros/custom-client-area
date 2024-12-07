@@ -63,20 +63,20 @@ $pagination_args = array(
                     <?php
                     if ( $state == State::PENDING ) {
                         ?>
-                        <a href="<?= admin_url( 'admin.php?page=customarea-user-approval&state_user=' . State::APPROVED . '&user_id=' . $user->ID ) ?>"
+                        <a href="<?= admin_url( 'admin.php?page=customarea&change_state_user=' . State::APPROVED . '&user_id=' . $user->ID ) ?>"
                            class="button button-primary">Aprobar</a>
-                        <a href="<?= admin_url( 'admin.php?page=customarea-user-approval&state_user=' . State::REJECTED . '&user_id=' . $user->ID ) ?>"
-                           class="button button-secondary">Rechazar</a>
+                        <a href="<?= admin_url( 'admin.php?page=customarea&change_state_user=' . State::REJECTED . '&user_id=' . $user->ID ) ?>"
+                           class="button button-secondary action-no-approval">Rechazar</a>
                         <?php
                     } else if ( $state == State::APPROVED ) {
                         ?>
-                        <a href="<?= admin_url( 'admin.php?page=customarea-user-approval&state_user=' . State::PENDING . '&user_id=' . $user->ID ) ?>"
-                           class="button button-secondary">Poner en Pendiente</a>
+                        <a href="<?= admin_url( 'admin.php?page=customarea&change_state_user=' . State::PENDING . '&user_id=' . $user->ID ) ?>"
+                           class="button button-secondary action-pending">Poner en Pendiente</a>
                         <?php
                     } else if ( $state == State::REJECTED ) {
                         ?>
-                        <a href="<?= admin_url( 'admin.php?page=customarea-user-approval&state_user=' . State::PENDING . '&user_id=' . $user->ID ) ?>"
-                           class="button button-secondary">Poner en Pendiente</a>
+                        <a href="<?= admin_url( 'admin.php?page=customarea&change_state_user=' . State::PENDING . '&user_id=' . $user->ID ) ?>"
+                           class="button button-secondary action-pending">Poner en Pendiente</a>
                         <?php
                     }
 
