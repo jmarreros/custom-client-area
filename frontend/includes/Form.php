@@ -3,17 +3,20 @@
 namespace dcms\customarea\frontend\includes;
 
 // To manage fields in the form
+use dcms\customarea\helpers\State;
+use JetBrains\PhpStorm\NoReturn;
+
 class Form {
 
-	private array $fields_simpa = [];
-
 	public function __construct() {
-		add_action( 'admin_post_process_form_affiliate', [ $this, 'process_form_affiliate' ] );
+		add_action( 'wp_ajax_dcms_save_affiliation', [ $this, 'process_form_affiliate' ] );
 	}
 
+	#[NoReturn]
 	public function process_form_affiliate(): void {
-		$fields = $this->get_fields_affiliation();
-		$data   = [];
+		$fields  = $this->get_fields_affiliation();
+		$data    = [];
+		$user_id = get_current_user_id();
 
 		foreach ( $fields as $key => $field ) {
 			$data[ $key ] = $_POST[ $key ] ?? '';
@@ -21,25 +24,27 @@ class Form {
 
 		// Save data
 		foreach ( $data as $key => $value ) {
-			update_user_meta( get_current_user_id(), $key, $value );
+			update_user_meta( $user_id, $key, $value );
 		}
 
-		// wp_error
+		// Assign user role
+		$user = wp_get_current_user();
+		$user->set_role( DCMS_CUSTOMAREA_ROL );
 
-		$url = dcms_get_url_client_area() . '&affiliation=1';
-		wp_redirect( $url );
-		exit;
+		// Add metadata state
+		update_user_meta( $user_id, DCMS_CUSTOMAREA_APPROVED_USER, State::PENDING );
+
+		$res = [
+			'success' => true,
+			'message' => 'Datos guardados correctamente',
+		];
+
+		wp_send_json( $res );
 	}
 
 	public function get_fields_affiliation(): array {
 
-		$this->fields_simpa = [
-//			'n_affiliation' => [
-//				'group'    => 'personal',
-//				'type'     => 'text',
-//				'label'    => __( 'Número de Afiliación', 'customarea' ),
-//				'required' => 'required',
-//			],
+		return [
 			'dni'        => [
 				'group'    => 'personal',
 				'type'     => 'text',
@@ -65,11 +70,10 @@ class Form {
 				'required' => 'required',
 			]
 		];
-
-		return $this->fields_simpa;
 	}
 
 }
+
 
 //$this->fields_simpa = [
 //	'first_name'             => [

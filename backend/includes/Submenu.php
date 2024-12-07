@@ -87,13 +87,13 @@ class Submenu {
 
 		$state = $_GET['state_user'] ?? State::PENDING;
 
-		$db          = new Database();
+		$db = new Database();
 
 		$count_rejected = $db->count_user_state( State::REJECTED );
 		$count_pending  = $db->count_user_state( State::PENDING );
 		$count_approval = $db->count_user_state( State::APPROVED );
 
-		switch ( $state ){
+		switch ( $state ) {
 			case State::REJECTED:
 				$count_items = $count_rejected;
 				break;
@@ -125,7 +125,7 @@ class Submenu {
 		$admin_bar->add_menu( array(
 			'id'    => 'customarea',
 			'title' => '<span class="dashicons-before dashicons-admin-users">' . __( 'Aprobación Usuarios', 'customarea' ) . '</span>',
-			'href'  => admin_url( 'admin.php?page=customarea-user-approval' ),
+			'href'  => admin_url( 'admin.php?page=customarea' ),
 		) );
 	}
 }

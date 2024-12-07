@@ -63,4 +63,20 @@ class Database {
 
 		return $users ?? [];
 	}
+
+	public function get_user_metadata_fields($user_id, $fields) : array{
+		$meta = get_user_meta( $user_id, '', true );
+
+		// All user meta data
+		$data = array_map( function ( $meta ) {
+			return $meta[0];
+		}, $meta );
+
+		$user_data = [];
+		foreach ($fields as $field){
+			$user_data[$field] = $data[$field] ?? '';
+		}
+
+		return $user_data;
+	}
 }

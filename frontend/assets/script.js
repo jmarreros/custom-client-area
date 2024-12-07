@@ -1,5 +1,18 @@
 (function ($) {
     'use strict';
+    $('#affiliation-form').submit(function (e) {
+        e.preventDefault();
+
+        const data = {
+            dni: $(this).find('#dni').val(),
+            name: $(this).find('#name').val(),
+            first_name: $(this).find('#first_name').val(),
+            last_name: $(this).find('#last_name').val(),
+            address: $(this).find('#address').val(),
+        }
+
+        generic_ajax_call('#affiliation-form', 'dcms_save_affiliation', data);
+    });
 
     // Register process ajax
     $('#customarea-register').submit(function (e) {
@@ -34,12 +47,12 @@
 
         let data = {};
 
-        $(this).find('input, textarea, select').each(function() {
+        $(this).find('input, textarea, select').each(function () {
             let input = $(this);
-            if ( input.attr('id')){
-                if ( input.is(':checkbox') ){
+            if (input.attr('id')) {
+                if (input.is(':checkbox')) {
                     data[input.attr('id')] = input.is(':checked') ? 1 : 0;
-                }else {
+                } else {
                     data[input.attr('id')] = input.val();
                 }
             }
@@ -63,7 +76,7 @@
 
 
     // Generic ajax call
-    function generic_ajax_call(selector, action, data){
+    function generic_ajax_call(selector, action, data) {
 
         const ldsRing = $(selector).find('.lds-ring');
         const message = $(selector).find('.form-message');
@@ -83,12 +96,11 @@
             }
         })
             .done(function (res) {
-                console.log(res);
                 $(message).removeClass('hide').html(res.message);
                 if (!res.success) {
                     $(message).addClass('error');
                 } else {
-                    if ( res.url_redirect ){
+                    if (res.url_redirect) {
                         window.location.href = res.url_redirect;
                     }
                 }

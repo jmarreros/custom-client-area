@@ -2,6 +2,8 @@
 
 namespace dcms\customarea\frontend\includes;
 
+use dcms\customarea\backend\includes\Database;
+
 class Shortcode {
 
 	public function __construct() {
@@ -41,7 +43,6 @@ class Shortcode {
 		return ob_get_clean();
 	}
 
-
 	public function create_login_form(): string {
 		wp_enqueue_script( 'customarea-script' );
 		wp_enqueue_style( 'customarea-style' );
@@ -61,13 +62,15 @@ class Shortcode {
 		return ob_get_clean();
 	}
 
-	public function create_logout() {
+	public function create_logout(): string {
 		if ( is_user_logged_in() ) {
 			ob_start();
 			include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/logout-form.php' );
 
 			return ob_get_clean();
 		}
+
+		return '';
 	}
 
 
@@ -96,7 +99,8 @@ class Shortcode {
 		$show_save_button = true;
 		$show_title       = true;
 
-		error_log( print_r( $fields, true ) );
+		$db     = new Database();
+		$values = $db->get_user_metadata_fields( $user_id, array_keys( $fields ) );
 
 		ob_start();
 		include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/user-affiliation-form.php' );

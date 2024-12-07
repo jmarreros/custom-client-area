@@ -57,9 +57,8 @@ function get_url_by_id( $id ): string {
 }
 
 
-function create_control_HTML( $field ): string {
+function create_control_HTML( $name, $field ): string {
 	$type     = $field['type'] ?? '';
-	$name     = sanitize_title($field['name']) ?? '';
 	$value    = $field['value'] ?? '';
 	$label    = $field['label'] ?? '';
 	$required = $field['required'] ?? false;
@@ -69,19 +68,19 @@ function create_control_HTML( $field ): string {
 	$control  = '';
 	switch ( $type ) {
 		case 'text':
-			$control = "<input type='text' name='$name' value='$value' class='form-control' $required>";
+			$control = "<input type='text' name='$name' id='$name' value='$value' class='form-control' $required>";
 			break;
 		case 'email':
-			$control = "<input type='email' name='$name' value='$value' class='form-control' $required>";
+			$control = "<input type='email' name='$name' id='$name' value='$value' class='form-control' $required>";
 			break;
 		case 'password':
-			$control = "<input type='password' name='$name' value='$value' class='form-control' $required>";
+			$control = "<input type='password' name='$name' id='$name' value='$value' class='form-control' $required>";
 			break;
 		case 'textarea':
-			$control = "<textarea name='$name' class='form-control' $required>$value</textarea>";
+			$control = "<textarea name='$name' id='$name' class='form-control' $required>$value</textarea>";
 			break;
 		case 'select':
-			$control = "<select name='$name' class='form-control' $required>";
+			$control = "<select name='$name' id='$name' class='form-control' $required>";
 			foreach ( $options as $option ) {
 				$selected = $option['value'] === $value ? 'selected' : '';
 				$control  .= "<option value='{$option['value']}' $selected>{$option['text']}</option>";
@@ -91,7 +90,7 @@ function create_control_HTML( $field ): string {
 		case 'radio':
 			foreach ( $options as $option ) {
 				$checked = $option['value'] === $value ? 'checked' : '';
-				$control .= "<input type='radio' name='$name' value='{$option['value']}' $checked> {$option['text']}";
+				$control .= "<input type='radio' name='$name' id='$name' value='{$option['value']}' $checked> {$option['text']}";
 			}
 			break;
 		case 'checkbox':
