@@ -8,7 +8,7 @@ class Rol {
 	public function __construct() {
 	}
 
-	public function create_rol_afiliate(): void {
+	public function create_rol_affiliate(): void {
 		$name = DCMS_CUSTOMAREA_ROL;
 
 		if ( ! get_role( $name ) ) {
@@ -25,6 +25,16 @@ class Rol {
 			remove_role( 'rol_afiliate' );
 			remove_role( 'um_afiliado' );
 		}
+	}
+
+	public function add_rol_afiliate( $user_id ) {
+		$user = get_user_by( 'ID', $user_id );
+		$user->add_role( DCMS_CUSTOMAREA_ROL );
+	}
+
+	public function remove_rol_afiliate( $user_id ) {
+		$user = get_user_by( 'ID', $user_id );
+		$user->remove_role( DCMS_CUSTOMAREA_ROL );
 	}
 
 }

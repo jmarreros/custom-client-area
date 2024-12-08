@@ -50,6 +50,7 @@ final class Loader {
 		// User metadata
 		define( 'DCMS_CUSTOMAREA_FILL_FORM_AFFILIATION', 'dcms_fill_form_affiliation' );
 		define( 'DCMS_CUSTOMAREA_APPROVED_USER', 'dcms_approved_user' );
+		define( 'DCMS_CUSTOMAREA_APPROVED_USER_DATE', 'dcms_approved_user_date' );
 		define( 'DCMS_CUSTOMAREA_ROL', 'affiliate_role' );
 
 		// Shortcodes

@@ -13,9 +13,10 @@ class Plugin {
 	public function dcms_activation_plugin(): void {
 		$db = new Database();
 		$db->create_table_pre_register();
+		$db->create_table_approval_log();
 
 		$rol = new Rol();
-		$rol->create_rol_afiliate();
+		$rol->create_rol_affiliate();
 	}
 
 	// Deactivate plugin

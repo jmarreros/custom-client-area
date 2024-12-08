@@ -10,11 +10,13 @@ use wpdb;
 class Database {
 	private wpdb $wpdb;
 	private string $table_pre_register;
+	private string $table_approval_log;
 
 	public function __construct() {
 		global $wpdb;
 		$this->wpdb               = $wpdb;
 		$this->table_pre_register = $wpdb->prefix . 'customarea_pre_register';
+		$this->table_approval_log = $wpdb->prefix . 'customarea_approval_log';
 	}
 
 	public function create_table_pre_register(): void {
@@ -23,6 +25,20 @@ class Database {
 			email VARCHAR(250) NOT NULL UNIQUE,
 			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 			user_id bigint(20) unsigned NULL,
+			PRIMARY KEY (id)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+	}
+
+	public function create_table_approval_log(): void {
+		$sql = "CREATE TABLE IF NOT EXISTS $this->table_approval_log (
+			id INT(11) NOT NULL AUTO_INCREMENT,
+			user_id bigint(20) unsigned NULL,
+			state smallint(1) NOT NULL,
+			approval_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+			modified_by bigint(20) unsigned NULL,
 			PRIMARY KEY (id)
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
@@ -56,16 +72,22 @@ class Database {
 		return $this->wpdb->get_var( "SELECT COUNT(user_id) FROM {$this->wpdb->usermeta} WHERE meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' AND meta_value = " . $state );
 	}
 
-	// TODO: order by approval date
 	public function get_users_per_state( $state, $limit, $offset ): array {
-		$users = $this->wpdb->get_results( "SELECT * FROM {$this->wpdb->users} u 
-													INNER JOIN {$this->wpdb->usermeta} um ON u.ID = um.user_id
-  													WHERE um.meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' AND um.meta_value = " . $state . " LIMIT $limit OFFSET $offset" );
+		$sql = "SELECT u.*, um.meta_value user_state, umd.meta_value modification_date 
+				FROM {$this->wpdb->users} u 
+				INNER JOIN {$this->wpdb->usermeta} um ON u.ID = um.user_id AND um.meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER . "' 
+				LEFT JOIN {$this->wpdb->usermeta} umd ON u.ID = umd.user_id AND umd.meta_key = '" . DCMS_CUSTOMAREA_APPROVED_USER_DATE . "'
+                WHERE 
+                    um.meta_value = " . $state . " 
+                    ORDER BY STR_TO_DATE(umd.meta_value, '%Y-%m-%d %H:%i:%s') DESC
+                    LIMIT $limit OFFSET $offset";
+
+		$users = $this->wpdb->get_results( $sql );
 
 		return $users ?? [];
 	}
 
-	public function get_user_metadata_fields($user_id, $fields) : array{
+	public function get_user_metadata_fields( $user_id, $fields ): array {
 		$meta = get_user_meta( $user_id, '', true );
 
 		// All user meta data
@@ -74,10 +96,18 @@ class Database {
 		}, $meta );
 
 		$user_data = [];
-		foreach ($fields as $field){
-			$user_data[$field] = $data[$field] ?? '';
+		foreach ( $fields as $field ) {
+			$user_data[ $field ] = $data[ $field ] ?? '';
 		}
 
 		return $user_data;
+	}
+
+	public function insert_approval_log( $user_id, $state, $modified_by ): void {
+		$this->wpdb->insert( $this->table_approval_log, [
+			'user_id'     => $user_id,
+			'state'       => $state,
+			'modified_by' => $modified_by,
+		] );
 	}
 }
