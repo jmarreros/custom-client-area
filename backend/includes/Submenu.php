@@ -117,7 +117,6 @@ class Submenu {
 		$db    = new Database();
 		$users = $db->get_users_per_state( $state, $limit, $offset );
 
-
 		include_once( DCMS_CUSTOMAREA_PATH . '/backend/views/user-approval.php' );
 	}
 
