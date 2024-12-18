@@ -67,12 +67,16 @@ function create_control_HTML( $name, $field ): string {
 	$label    = $field['label'] ?? '';
 	$required = $field['required'] ?? false;
 	$options  = $field['options'] ?? [];
+	$description = $field['description'] ?? '';
 
 	$required = $required ? 'required' : '';
 	$control  = '';
 	switch ( $type ) {
 		case 'text':
 			$control = "<input type='text' name='$name' id='$name' value='$value' class='form-control' $required>";
+			break;
+		case 'date':
+			$control = "<input type='date' name='$name' id='$name' value='$value' class='form-control' $required>";
 			break;
 		case 'email':
 			$control = "<input type='email' name='$name' id='$name' value='$value' class='form-control' $required>";
@@ -94,7 +98,7 @@ function create_control_HTML( $name, $field ): string {
 		case 'radio':
 			foreach ( $options as $option ) {
 				$checked = $option['value'] === $value ? 'checked' : '';
-				$control .= "<input type='radio' name='$name' id='$name' value='{$option['value']}' $checked> {$option['text']}";
+				$control .= "<label><input type='radio' name='$name' id='$name' value='{$option['value']}' $checked> {$option['text']}</label>";
 			}
 			break;
 		case 'checkbox':
@@ -103,9 +107,14 @@ function create_control_HTML( $name, $field ): string {
 			break;
 	}
 
+	if ( $description ) {
+		$description = "<div class='description'>$description</div>";
+	}
+
 	return "<div class='form-group'>
 				<label for='$name'>$label: </label>
 				$control
+				$description
 			</div>";
 }
 

@@ -187,8 +187,18 @@
     margin-right: 10px;
 }
 
-.affiliation-form .personal-info .row .form-group input:last-child {
+.affiliation-form .personal-info .row .form-group input {
     flex: 1;
+}
+
+.affiliation-form .form-group{
+    flex-wrap: wrap;
+}
+
+.affiliation-form .form-group .description{
+    width: 100%;
+    font-size: 14px;
+    text-indent: 110px;
 }
 
 @media(max-width: 768px){
@@ -196,12 +206,15 @@
         flex-direction: column;
         align-items: flex-start;
     }
+
     .affiliation-form .row .form-group input{
         width: 100%;
     }
+
+    .affiliation-form .form-group .description{
+        text-indent: 0;
+    }
 }
-
-
 
 
 /*Spinner*/
@@ -235,6 +248,20 @@
 
 .lds-ring div:nth-child(3) {
     animation-delay: -0.15s;
+}
+
+input[type="date"]{
+    color: #666;
+    padding: .75em;
+    height: auto;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--ast-border-color);
+    border-radius: 2px;
+    background: var(--ast-comment-inputs-background);
+    box-shadow: none;
+    box-sizing: border-box;
+    transition: all .2s linear;
 }
 
 @keyframes lds-ring {

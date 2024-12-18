@@ -96,7 +96,7 @@ class Form {
 			'dni'              => [
 				'group'    => 'personal',
 				'type'     => 'text',
-				'label'    => __( 'DNI', 'customarea' ),
+				'label'    => __( 'DNI/NIF', 'customarea' ),
 				'required' => 'required',
 			],
 			'año-licenciatura' => [
@@ -115,22 +115,34 @@ class Form {
 				'type'     => 'text',
 				'label'    => __( 'Titulación', 'customarea' ),
 				'required' => 'required',
+				'description' => '(indicar licenciatura: médico, farmacéutico, etc.)',
 			],
 			'cónyuge'          => [
 				'group' => 'personal',
 				'type'  => 'text',
 				'label' => __( 'Cónyuge', 'customarea' ),
 			],
+			'centro-trabajo-1-tipo' => [
+				'group'    => 'profesional',
+				'type'     => 'radio',
+				'label'    => __( 'Tipo Centro de Trabajo', 'customarea' ),
+				'options' => [
+					['value' => 'publico', 'text' => 'Público'],
+					['value' => 'privado', 'text' => 'Privado'],
+					['value' => 'otros', 'text' => 'Otros'],
+				],
+				'required' => 'required',
+			],
 			'centro-trabajo-1' => [
 				'group'    => 'profesional',
 				'type'     => 'text',
-				'label'    => __( 'Centro de Trabajo', 'customarea' ),
+				'label'    => __( 'Centro de Trabajo 1', 'customarea' ),
 				'required' => 'required',
 			],
 			'centro-trabajo-2' => [
 				'group' => 'profesional',
 				'type'  => 'text',
-				'label' => __( 'Centro de Trabajo', 'customarea' ),
+				'label' => __( 'Centro de Trabajo 2', 'customarea' ),
 			],
 			'especialidad'     => [
 				'group'    => 'profesional',

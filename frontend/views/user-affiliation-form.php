@@ -34,23 +34,34 @@ $fields = $fields ?? [];
 
             <div class="row col2">
 				<?= create_control_HTML( 'email', $fields['email'] ); ?>
-				<?= create_space_HTML(); ?>
+				<?= create_control_HTML( 'fecha-nacimiento', $fields['fecha-nacimiento'] ); ?>
             </div>
 
+            <div class="row col2">
+		        <?= create_control_HTML( 'dni', $fields['dni'] ); ?>
+		        <?= create_control_HTML( 'año-licenciatura', $fields['año-licenciatura'] ); ?>
+            </div>
 
-            <!--            <table class="form-table">-->
-            <!--		        --><?php //foreach ( $fields as $name => $field ): ?>
-            <!--                    <tr>-->
-            <!--                        <td>--><?php
-			//					        $field['value'] = $values[ $name ] ?? '';
-			//					        echo create_control_HTML( $name, $field )
-			//					        ?><!--</td>-->
-            <!--                    </tr>-->
-            <!--		        --><?php //endforeach; ?>
-            <!--            </table>-->
+            <div class="row col1">
+		        <?= create_control_HTML( 'titulación', $fields['titulación'] ); ?>
+            </div>
 
         </section>
 
+
+        <section class="professional-info">
+            <h3>Datos Profesionales</h3>
+
+            <div class="row col1">
+		        <?= create_control_HTML( 'centro-trabajo-1-tipo', $fields['centro-trabajo-1-tipo'] ); ?>
+            </div>
+
+            <div class="row col1">
+		        <?= create_control_HTML( 'centro-trabajo-2', $fields['centro-trabajo-2'] ); ?>
+            </div>
+
+
+        </section>
 
         <div class="form-message hide"></div>
 
