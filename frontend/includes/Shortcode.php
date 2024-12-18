@@ -102,6 +102,11 @@ class Shortcode {
 		$db     = new Database();
 		$values = $db->get_user_metadata_fields( $user_id, array_keys( $fields ) );
 
+		// Add value to fields
+		foreach ( $fields as $name => &$field ) {
+			$field['value'] = $values[ $name ] ?? '';
+		}
+
 		ob_start();
 		include_once( DCMS_CUSTOMAREA_PATH . '/frontend/views/user-affiliation-form.php' );
 

@@ -57,6 +57,10 @@ function get_url_by_id( $id ): string {
 }
 
 
+function create_space_HTML():string{
+	return "<div class='form-group'></div>";
+}
+
 function create_control_HTML( $name, $field ): string {
 	$type     = $field['type'] ?? '';
 	$value    = $field['value'] ?? '';
@@ -100,7 +104,7 @@ function create_control_HTML( $name, $field ): string {
 	}
 
 	return "<div class='form-group'>
-				<label for='$name'>$label</label>
+				<label for='$name'>$label: </label>
 				$control
 			</div>";
 }
