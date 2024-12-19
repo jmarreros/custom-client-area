@@ -111,4 +111,71 @@
             });
     }
 
+
+    // Show hide controls affiliation form
+
+    // Centro de trabajo 1 y 2
+    $('.affiliation-form #centro-trabajo-1').removeAttr('list');
+    $('.affiliation-form #centro-trabajo-1-tipo').change(function () {
+        if ($(this).val() === 'publico') {
+            $('.affiliation-form #centro-trabajo-1').attr('list', 'centro-trabajo-1-options');
+        }
+        if ($(this).val() === 'privado' || $(this).val() === 'otros') {
+            $('.affiliation-form #centro-trabajo-1').removeAttr('list');
+        }
+    });
+
+    $('.affiliation-form #centro-trabajo-2').removeAttr('list');
+    $('.affiliation-form #centro-trabajo-2-tipo').change(function () {
+        if ($(this).val() === 'publico') {
+            $('.affiliation-form #centro-trabajo-2').attr('list', 'centro-trabajo-2-options');
+        }
+        if ($(this).val() === 'privado' || $(this).val() === 'otros') {
+            $('.affiliation-form #centro-trabajo-2').removeAttr('list');
+        }
+    });
+
+    // Ejercicio profesional
+    $('.affiliation-form #ejercicio-profesional').change(function () {
+        if ($(this).val() === 'publico') {
+            $('.affiliation-form .public-group').removeClass('hide');
+            $('.affiliation-form .private-group').addClass('hide');
+        }
+        if ($(this).val() === 'privado') {
+            $('.affiliation-form .private-group').removeClass('hide');
+            $('.affiliation-form .public-group').addClass('hide');
+        }
+        if ($(this).val() === 'ambos') {
+            $('.affiliation-form .public-group').removeClass('hide');
+            $('.affiliation-form .private-group').removeClass('hide');
+        }
+    });
+
+    $('.affiliation-form #publico-grupo-profesional').change(function () {
+        if ($(this).val() === 'estatuario' || $(this).val() === 'funcionario') {
+            $('.affiliation-form #publico-contrato').attr('list', 'publico-contrato-options');
+        } else {
+            $('.affiliation-form #publico-contrato').attr('list', 'publico-contrato-options-alt');
+        }
+    });
+
+
+    $('.affiliation-form #privado-grupo-profesional').change(function () {
+        if ($(this).val() === 'laboral') {
+            $('.affiliation-form #privado-contrato').attr('list', 'privado-contrato-options');
+        } else {
+            $('.affiliation-form #privado-contrato').attr('list', '');
+        }
+    });
+
+    // hide the last child form-grup class
+    $('.affiliation-form .situation .form-group:last-child').addClass('hide');
+    $('.affiliation-form #situación-administrativa').change(function () {
+        if ($(this).val() === 'excedencia' || $(this).val() === 'servicios especiales') {
+            $('.affiliation-form .situation .form-group:last-child').removeClass('hide');
+        } else {
+            $('.affiliation-form .situation .form-group:last-child').addClass('hide');
+        }
+    });
+
 })(jQuery);

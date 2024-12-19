@@ -57,16 +57,16 @@ function get_url_by_id( $id ): string {
 }
 
 
-function create_space_HTML():string{
+function create_space_HTML(): string {
 	return "<div class='form-group'></div>";
 }
 
 function create_control_HTML( $name, $field ): string {
-	$type     = $field['type'] ?? '';
-	$value    = $field['value'] ?? '';
-	$label    = $field['label'] ?? '';
-	$required = $field['required'] ?? false;
-	$options  = $field['options'] ?? [];
+	$type        = $field['type'] ?? '';
+	$value       = $field['value'] ?? '';
+	$label       = $field['label'] ?? '';
+	$required    = $field['required'] ?? false;
+	$options     = $field['options'] ?? [];
 	$description = $field['description'] ?? '';
 
 	$required = $required ? 'required' : '';
@@ -96,14 +96,24 @@ function create_control_HTML( $name, $field ): string {
 			$control .= '</select>';
 			break;
 		case 'radio':
+			$control = '<div class="options">';
 			foreach ( $options as $option ) {
 				$checked = $option['value'] === $value ? 'checked' : '';
 				$control .= "<label><input type='radio' name='$name' id='$name' value='{$option['value']}' $checked> {$option['text']}</label>";
 			}
+			$control .= '</div>';
 			break;
 		case 'checkbox':
 			$checked = $value === '1' ? 'checked' : '';
 			$control = "<input type='checkbox' name='$name' value='1' $checked>";
+			break;
+		case 'datalist':
+			$control = "<input list='$name-options' id='$name' name='$name' class='form-control datalist' $required'>";
+			$control .= "<datalist id='$name-options'>";
+			foreach ( $options as $option ) {
+				$control .= "<option value='{$option['value']}'>";
+			}
+			$control .= '</datalist>';
 			break;
 	}
 
