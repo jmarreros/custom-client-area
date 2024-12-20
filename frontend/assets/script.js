@@ -1,17 +1,32 @@
 (function ($) {
     'use strict';
+
     $('#affiliation-form').submit(function (e) {
         e.preventDefault();
 
-        const data = {
-            dni: $(this).find('#dni').val(),
-            name: $(this).find('#name').val(),
-            first_name: $(this).find('#first_name').val(),
-            last_name: $(this).find('#last_name').val(),
-            address: $(this).find('#address').val(),
-        }
+        let formData = {};
 
-        generic_ajax_call('#affiliation-form', 'dcms_save_affiliation', data);
+        // Loop through all input, select elements in the form
+        $(this).find('input, select').each(function () {
+            let input = $(this);
+            let name = input.attr('name');
+
+            if (name) {
+                if (input.is(':radio')) {
+                    if (input.is(':checked')) {
+                        formData[name] = input.val();
+                    }
+                } else {
+                    formData[name] = input.val();
+                }
+            }
+
+
+        });
+
+        console.log(formData);
+
+        generic_ajax_call('#affiliation-form', 'dcms_save_affiliation', formData);
     });
 
     // Register process ajax
@@ -115,7 +130,7 @@
     // Show hide controls affiliation form
 
     // Centro de trabajo 1 y 2
-    $('.affiliation-form #centro-trabajo-1').removeAttr('list');
+
     $('.affiliation-form #centro-trabajo-1-tipo').change(function () {
         if ($(this).val() === 'publico') {
             $('.affiliation-form #centro-trabajo-1').attr('list', 'centro-trabajo-1-options');
@@ -125,7 +140,6 @@
         }
     });
 
-    $('.affiliation-form #centro-trabajo-2').removeAttr('list');
     $('.affiliation-form #centro-trabajo-2-tipo').change(function () {
         if ($(this).val() === 'publico') {
             $('.affiliation-form #centro-trabajo-2').attr('list', 'centro-trabajo-2-options');
@@ -170,7 +184,7 @@
 
     // hide the last child form-grup class
     $('.affiliation-form .situation .form-group:last-child').addClass('hide');
-    $('.affiliation-form #situación-administrativa').change(function () {
+    $('.affiliation-form #situacion-administrativa').change(function () {
         if ($(this).val() === 'excedencia' || $(this).val() === 'servicios especiales') {
             $('.affiliation-form .situation .form-group:last-child').removeClass('hide');
         } else {

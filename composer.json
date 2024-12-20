@@ -6,7 +6,8 @@
       "dcms\\customarea\\": "./"
     },
     "files": [
-      "helpers/general.php"
+      "helpers/general.php",
+      "helpers/fields.php"
     ]
   },
   "authors": [

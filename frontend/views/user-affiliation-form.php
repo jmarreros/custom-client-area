@@ -23,7 +23,7 @@ $fields = $fields ?? [];
             </div>
 
             <div class="row col2">
-				<?= create_control_HTML( 'población', $fields['población'] ); ?>
+				<?= create_control_HTML( 'poblacion', $fields['poblacion'] ); ?>
 				<?= create_control_HTML( 'cod-postal', $fields['cod-postal'] ); ?>
             </div>
 
@@ -39,11 +39,11 @@ $fields = $fields ?? [];
 
             <div class="row col2">
 				<?= create_control_HTML( 'dni', $fields['dni'] ); ?>
-				<?= create_control_HTML( 'año-licenciatura', $fields['año-licenciatura'] ); ?>
+				<?= create_control_HTML( 'anio-licenciatura', $fields['anio-licenciatura'] ); ?>
             </div>
 
             <div class="row col1">
-				<?= create_control_HTML( 'titulación', $fields['titulación'] ); ?>
+				<?= create_control_HTML( 'titulacion', $fields['titulacion'] ); ?>
             </div>
 
         </section>
@@ -70,7 +70,7 @@ $fields = $fields ?? [];
 
             <div class="row col2">
 				<?= create_control_HTML( 'especialidad', $fields['especialidad'] ); ?>
-				<?= create_control_HTML( 'categoría', $fields['categoría'] ); ?>
+				<?= create_control_HTML( 'categoria', $fields['categoria'] ); ?>
             </div>
 
             <br>
@@ -109,8 +109,8 @@ $fields = $fields ?? [];
             </div>
 
             <div class="row col2 situation">
-				<?= create_control_HTML( 'situación-administrativa', $fields['situación-administrativa'] ); ?>
-				<?= create_control_HTML( 'motivo-situación', $fields['motivo-situación'] ); ?>
+				<?= create_control_HTML( 'situacion-administrativa', $fields['situacion-administrativa'] ); ?>
+				<?= create_control_HTML( 'motivo-situacion', $fields['motivo-situacion'] ); ?>
             </div>
 
         </section>

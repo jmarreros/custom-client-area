@@ -11,7 +11,6 @@ class User {
 		add_action( 'wp_ajax_nopriv_dcms_register_user', [ $this, 'custom_register_user_ajax' ] );
 		add_action( 'wp_ajax_nopriv_dcms_login_user', [ $this, 'custom_login_user_ajax' ] );
 
-
 //		add_action( 'wp_ajax_dcms_save_data_connection', [ $this, 'custom_save_data_connection' ] );
 //		add_action( 'wp_ajax_dcms_save_data_emergency', [ $this, 'custom_save_data_emergency' ] );
 
@@ -104,80 +103,54 @@ class User {
 		wp_send_json( $res );
 	}
 
-	public function custom_save_data_connection(): void {
 
-		dcms_validate_nonce( $_POST['nonce'], 'ajax-nonce' );
+	function update_user_email( $user_id, $new_email ) :array {
 
-		$user_id   = get_current_user_id();
-		$email     = $_POST['email'] ?? '';
-		$password  = $_POST['password'] ?? '';
-		$password2 = $_POST['password2'] ?? '';
-
-		$data = [
-			'ID'         => $user_id,
-			'user_email' => $email
-		];
-
-		$res = [
-			'success' => true,
-			'message' => __( 'Los datos se guardaron correctamente', 'customarea' ),
-		];
-
-		if ( ! is_email( $email ) ) {
-			$res = [
-				'success' => false,
-				'message' => __( 'Email no válido', 'customarea' ),
+		$user_info = get_userdata( $user_id );
+		if ( $user_info->user_email == $new_email ) {
+			return [
+				'status'  => true,
+				'message' => __( 'El correo es el mismo.', 'customarea' ),
 			];
-			wp_send_json( $res );
 		}
 
-		if ( ! empty( $password ) ) {
-			if ( $password !== $password2 ) {
-				$res = [
-					'success' => false,
-					'message' => __( 'Las contraseñas no coinciden', 'customarea' ),
-				];
-				wp_send_json( $res );
-			}
-			$data['user_pass'] = $_POST['password'];
+		if ( ! $this->is_email_unique( $user_id, $new_email ) ) {
+			return [
+				'status'  => false,
+				'message' => __( 'El correo ya esta siendo usado por otro usuario.', 'customarea' ),
+			];
 		}
 
-		$user_id = wp_update_user( $data );
+		// Update the user's email
+		$user_data = array(
+			'ID'         => $user_id,
+			'user_email' => $new_email,
+		);
+
+		$user_id = wp_update_user( $user_data );
 
 		if ( is_wp_error( $user_id ) ) {
-			$res = [
-				'success' => false,
+			return [
+				'status'  => false,
 				'message' => $user_id->get_error_message(),
 			];
 		}
 
-		wp_send_json( $res );
+		return [
+			'status'  => true,
+			'message' => __( 'Correo actualizado correctamente.', 'customarea' ),
+		];
 	}
 
 
-	public function custom_save_data_emergency(): void {
+	function is_email_unique( $user_id, $new_email ): bool {
+		$email_exists = email_exists( $new_email );
 
-		dcms_validate_nonce( $_POST['nonce'], 'ajax-nonce' );
-
-		$user_id = get_current_user_id();
-
-		// Assign all items to $items without nonce and action
-		$items = $_POST;
-		unset( $items['nonce'] );
-		unset( $items['action'] );
-
-		// Save all items in user meta
-		foreach ( $items as $key => $value ) {
-			update_user_meta( $user_id, $key, $value );
+		if ( $email_exists && $email_exists != $user_id ) {
+			return false; // Email is already in use by another user
 		}
 
-
-		$res = [
-			'success' => true,
-			'message' => __( 'Los datos se guardaron correctamente', 'customarea' ),
-		];
-
-		wp_send_json( $res );
+		return true; // Email is unique or belongs to the current user
 	}
 
 }
