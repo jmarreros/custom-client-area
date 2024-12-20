@@ -24,8 +24,6 @@
 
         });
 
-        console.log(formData);
-
         generic_ajax_call('#affiliation-form', 'dcms_save_affiliation', formData);
     });
 
@@ -151,19 +149,19 @@
 
     // Ejercicio profesional
     $('.affiliation-form #ejercicio-profesional').change(function () {
-        if ($(this).val() === 'publico') {
+        if ($(this).val() === 'publico' && $(this).is(':checked')) {
             $('.affiliation-form .public-group').removeClass('hide');
             $('.affiliation-form .private-group').addClass('hide');
         }
-        if ($(this).val() === 'privado') {
+        if ($(this).val() === 'privado' && $(this).is(':checked')) {
             $('.affiliation-form .private-group').removeClass('hide');
             $('.affiliation-form .public-group').addClass('hide');
         }
-        if ($(this).val() === 'ambos') {
+        if ($(this).val() === 'ambos' && $(this).is(':checked')) {
             $('.affiliation-form .public-group').removeClass('hide');
             $('.affiliation-form .private-group').removeClass('hide');
         }
-    });
+    }).trigger('change');
 
     $('.affiliation-form #publico-grupo-profesional').change(function () {
         if ($(this).val() === 'estatuario' || $(this).val() === 'funcionario') {
@@ -182,7 +180,7 @@
         }
     });
 
-    // hide the last child form-grup class
+    // hide the last child form group class
     $('.affiliation-form .situation .form-group:last-child').addClass('hide');
     $('.affiliation-form #situacion-administrativa').change(function () {
         if ($(this).val() === 'excedencia' || $(this).val() === 'servicios especiales') {
@@ -190,6 +188,6 @@
         } else {
             $('.affiliation-form .situation .form-group:last-child').addClass('hide');
         }
-    });
+    }).trigger('change');
 
 })(jQuery);

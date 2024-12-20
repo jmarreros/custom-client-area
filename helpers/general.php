@@ -108,7 +108,7 @@ function create_control_HTML( $name, $field ): string {
 			$control = "<input type='checkbox' name='$name' value='1' $checked>";
 			break;
 		case 'datalist':
-			$control = "<input list='$name-options' id='$name' name='$name' class='form-control datalist' $required'>";
+			$control = "<input list='$name-options' id='$name' name='$name' value='$value' class='form-control datalist' $required'>";
 			$control .= "<datalist id='$name-options'>";
 			foreach ( $options as $option ) {
 				$control .= "<option value='{$option['value']}'>";
